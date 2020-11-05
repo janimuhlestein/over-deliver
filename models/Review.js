@@ -43,8 +43,24 @@ Review.init(
                 allowNull: false
             },
         review_text: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: true
+        },
+        provider_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'provider',
+                key: id
+            }
+        },
+        provider_type: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'provider',
+                key: type
+            }
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -53,10 +69,9 @@ Review.init(
                 key: 'id'
             }
         },
-        avatar: {
+       image: {
             type: DataTypes.STRING,
             allowNull: true,
-            unique: true,
             validate: {
                 isImage(value) {
                     value.split('.');
@@ -65,7 +80,8 @@ Review.init(
                     }
                 }
             }
-        }
+       }
+        
     },
     {
         sequelize,

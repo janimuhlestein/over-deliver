@@ -2,6 +2,7 @@ const User = require('./User');
 const Review = require('./Review');
 const Vote = require('./Vote');
 const Comment = require('./Comment');
+const Provider = require('./Provider');
 
 //create associations
 
@@ -47,4 +48,9 @@ User.hasMany(Comment, {
     foreignKey: 'review_id'
 });
 
-module.exports = { User, Review, Vote, Comment};
+Provider.belongsTo(Review, {
+    foreignKey: 'review_id'
+});
+
+
+module.exports = { User, Review, Vote, Comment, Provider};
