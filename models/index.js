@@ -52,5 +52,8 @@ Provider.belongsTo(Review, {
     foreignKey: 'review_id'
 });
 
+Review.hasMany(Provider, {
+    foreignKey: 'provider_id'
+});
 
 module.exports = { User, Review, Vote, Comment, Provider};
