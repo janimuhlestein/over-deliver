@@ -37,19 +37,6 @@ User.init(
                 len: [6]
             }
         },
-        avatar: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            unique: true,
-            validate: {
-                isImage(value) {
-                    value.split('.');
-                    if(value[1]!='jpg' || value[1] != 'png' || value[1]!= 'gif') {
-                        throw new Error('Only JPG, PNG or GIF files accepted');
-                    }
-                }
-            }    
-        }
     },
     {
             //table configuration options go here
