@@ -139,12 +139,14 @@ router.post('/login', (req,res)=>{
     })
     .then(dbUserData=>{
         if(!dbUserData) {
-            res.status(500).json({message: 'No user with that email address found!'});
+            res.status(400).json({message: 'No user with that email address found!'});
             return;
         }
         const validPassword = dbUserData.checkPassword(req.body.password);
         if(!validPassword) {
+            console.log(dbUserData);
             res.status(400).json({message: 'Invalid password'});
+            return;
         }
         req.session.save(()=>{
             req.session.user_id = dbUserData.id,
@@ -152,14 +154,15 @@ router.post('/login', (req,res)=>{
             req.session.loggedIn = true;
             res.json({user: dbUserData, message: 'You are now logged in.'});
         });
-    })
-    .catch(err=>{
+   // })
+    /* .catch(err=>{
         console.log(err);
-        res.status(500).json(err);
+        res.status(500).json(err); */
     });
 });
 
 router.post('/logout', (req,res)=>{
+    console.log(req.session.loggedIn);
     if(req.session.loggedIn){
         req.session.destroy(()=>{
             res.status(204).end();

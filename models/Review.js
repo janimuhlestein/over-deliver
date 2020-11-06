@@ -65,19 +65,6 @@ Review.init(
                 key: 'id'
             }
         },
-       image: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            validate: {
-                isImage(value) {
-                    value.split('.');
-                    if(value[1]!='jpg' || value[1] != 'png' || value[1]!= 'gif') {
-                        throw new Error('Only JPG, PNG or GIF files accepted');
-                    }
-                }
-            }
-       }
-        
     },
     {
         sequelize,

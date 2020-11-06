@@ -48,4 +48,4 @@ Provider.hasMany(Rating);
 Provider.hasMany(Image);
 
 
-module.exports = { User, Review, Vote, Comment, Provider, Rating};
+module.exports = { User, Review, Vote, Comment, Provider, Rating, Avatar, Image};

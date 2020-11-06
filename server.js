@@ -12,7 +12,7 @@ const sess = {
     secret: 'Super super secret',
     cookie: {},
     resave: false,
-    saveUnitialized: true,
+    saveUninitialized: true,
     maxAge: 10 * 60 * 1000,
     store: new SequelizeStore({
         db: sequelize

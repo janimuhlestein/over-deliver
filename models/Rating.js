@@ -60,6 +60,12 @@ Rating.init(
             model: 'user',
             key: 'id'
         }
+    },
+    provider_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: 'provider',
+        key: 'id'
     }
 },
  {   
