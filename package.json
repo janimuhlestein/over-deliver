@@ -1,0 +1,26 @@
+{
+  "name": "over-deliver",
+  "version": "1.0.0",
+  "description": "Delivery rating app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlightheart24/over-deliver.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlightheart24/over-deliver/issues"
+  },
+  "homepage": "https://github.com/jlightheart24/over-deliver#readme",
+  "dependencies": {
+    "expres": "0.0.5",
+    "express": "^4.17.1",
+    "sequelize": "^6.3.5"
+  }
+}
