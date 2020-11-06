@@ -83,7 +83,7 @@ Rating.init({
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'provider'
+        modelName: 'rating'
     });
 
 module.exports = Rating;

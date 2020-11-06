@@ -34,9 +34,53 @@ Review.init(
             primaryKey: true,
             autoIncrement: true
         },
-        rating: {
+        average_rating: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: 'rating',
+                key: 'average'
+            }
+        },
+        quality_rating: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'rating',
+                key: 'quality'
+            }
+        },
+        accuracy_rating: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'rating',
+                key: 'accuracy'
+            }
+        },
+        speed_rating: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'rating',
+                key: 'speed'
+            }
+        },
+        value_rating: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'rating',
+                key: 'value'
+            }
+        },
+        safety_rating: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'rating',
+                key: 'safety'
+            }
         },
         title: {
                 type: DataTypes.STRING,
@@ -46,7 +90,7 @@ Review.init(
             type: DataTypes.TEXT,
             allowNull: true
         },
-        provider_name: {
+        provider_id: {
             type: DataTypes.STRING,
             allowNull: false,
             references: {
@@ -59,7 +103,7 @@ Review.init(
             allowNull: true,
             references: {
                 model: 'provider',
-                key: type
+                key: 'type'
             }
         },
         user_id: {
