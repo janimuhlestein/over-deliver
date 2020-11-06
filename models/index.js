@@ -4,20 +4,28 @@ const Vote = require('./Vote');
 const Comment = require('./Comment');
 const Provider = require('./Provider');
 const Rating = require('./Rating');
+const Avatar = require('./Avatar');
+const Image = require('./Image');
 
 //create associations
 
 User.hasMany(Review);
 
-Review.belongsTo(User);
-
+User.hasOne(Avatar);
 
 User.hasMany(Rating);
 
-Review.belongsToMany(User, {
-    through: Vote,
-    foreignKey: 'post_id'
-});
+Avatar.belongsTo(User);
+
+User.hasMany(Image);
+
+Image.belongsTo(User);
+
+Review.belongsTo(User);
+
+User.hasMany(Rating);
+
+Review.belongsTo(User);
 
 Vote.belongsTo(User);
 
@@ -29,11 +37,15 @@ Comment.belongsTo(User);
 
 Comment.belongsTo(Review);
 
+Review.hasMany(Comment);
+
 User.hasMany(Comment);
 
 Provider.hasMany(Review);
 
 Provider.hasMany(Rating);
+
+Provider.hasMany(Image);
 
 
 module.exports = { User, Review, Vote, Comment, Provider, Rating};
