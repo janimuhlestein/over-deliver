@@ -40,7 +40,7 @@ Review.init(
         },
         title: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: true
             },
         review_text: {
             type: DataTypes.TEXT,
@@ -56,7 +56,7 @@ Review.init(
         },
         provider_type: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             references: {
                 model: 'provider',
                 key: type

@@ -3,6 +3,7 @@ const Review = require('./Review');
 const Vote = require('./Vote');
 const Comment = require('./Comment');
 const Provider = require('./Provider');
+const Rating = require('./Rating');
 
 //create associations
 
@@ -16,6 +17,10 @@ Review.belongsTo(User, {
 
 User.belongsToMany(Review, {
     through: Vote,
+    foreignKey: 'user_id'
+});
+
+User.hasMany(Rating, {
     foreignKey: 'user_id'
 });
 
@@ -58,6 +63,18 @@ Review.hasMany(Provider, {
 
 Provider.hasMany(Review, {
     foreignKey: 'provider_id'
+});
+
+Provider.hasMany(Rating, {
+    foreignKey: "provider_id"
+});
+
+Provider.belongsTo(Rating, {
+    foreignKey: 'review_id'
+});
+
+Rating.belongsTo(Review, {
+    foreignKey: 'rating_id'
 });
 
 module.exports = { User, Review, Vote, Comment, Provider};
