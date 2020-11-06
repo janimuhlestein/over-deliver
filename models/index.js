@@ -56,4 +56,8 @@ Review.hasMany(Provider, {
     foreignKey: 'provider_id'
 });
 
+Provider.hasMany(Review, {
+    foreignKey: 'provider_id'
+});
+
 module.exports = { User, Review, Vote, Comment, Provider};
