@@ -7,74 +7,33 @@ const Rating = require('./Rating');
 
 //create associations
 
-User.hasMany(Review, {
-    foreignKey: 'user_id'
-});
+User.hasMany(Review);
 
-Review.belongsTo(User, {
-    foreignKey: 'user_id'
-});
+Review.belongsTo(User);
 
-User.belongsToMany(Review, {
-    through: Vote,
-    foreignKey: 'user_id'
-});
 
-User.hasMany(Rating, {
-    foreignKey: 'user_id'
-});
+User.hasMany(Rating);
 
 Review.belongsToMany(User, {
     through: Vote,
     foreignKey: 'post_id'
 });
 
-Vote.belongsTo(User, {
-    foreignKey: 'user_id'
-});
+Vote.belongsTo(User);
 
-Vote.belongsTo(Review, {
-    foreignKey: 'review_id'
-});
+Vote.belongsTo(Review);
 
-Review.hasMany(Vote, {
-    foreignKey: 'review_id'
-});
+Review.hasMany(Vote);
 
-Comment.belongsTo(User, {
-    foreignKey: 'user_id'
-});
+Comment.belongsTo(User);
 
-Comment.belongsTo(Review, {
-    foreignKey: 'review_id'
-});
+Comment.belongsTo(Review);
 
-User.hasMany(Comment, {
-    foreignKey: 'review_id'
-});
+User.hasMany(Comment);
 
-Provider.belongsTo(Review, {
-    foreignKey: 'review_id'
-});
+Provider.hasMany(Review);
 
-Review.hasMany(Provider, {
-    foreignKey: 'provider_id'
-});
+Provider.hasMany(Rating);
 
-Provider.hasMany(Review, {
-    foreignKey: 'provider_id'
-});
 
-Provider.hasMany(Rating, {
-    foreignKey: "provider_id"
-});
-
-Provider.belongsTo(Rating, {
-    foreignKey: 'review_id'
-});
-
-Rating.belongsTo(Review, {
-    foreignKey: 'rating_id'
-});
-
-module.exports = { User, Review, Vote, Comment, Provider};
+module.exports = { User, Review, Vote, Comment, Provider, Rating};

@@ -34,54 +34,14 @@ Review.init(
             primaryKey: true,
             autoIncrement: true
         },
-        average_rating: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'rating',
-                key: 'average'
-            }
-        },
-        quality_rating: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'rating',
-                key: 'quality'
-            }
-        },
-        accuracy_rating: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'rating',
-                key: 'accuracy'
-            }
-        },
-        speed_rating: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'rating',
-                key: 'speed'
-            }
-        },
-        value_rating: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'rating',
-                key: 'value'
-            }
-        },
-        safety_rating: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'rating',
-                key: 'safety'
-            }
-        },
+       rating_id: {
+           type: DataTypes.INTEGER,
+           allowNull: false,
+           references: {
+               model: 'rating',
+               key: 'id'
+           }
+       },
         title: {
                 type: DataTypes.STRING,
                 allowNull: true
@@ -91,19 +51,11 @@ Review.init(
             allowNull: true
         },
         provider_id: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'provider',
-                key: id
-            }
-        },
-        provider_type: {
-            type: DataTypes.STRING,
-            allowNull: true,
-            references: {
-                model: 'provider',
-                key: 'type'
+                key: 'id'
             }
         },
         user_id: {

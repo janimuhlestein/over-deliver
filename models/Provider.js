@@ -1,5 +1,5 @@
-const {DataTypes} = require('sequelize');
-const { Review } = require('.');
+const {Model, DataTypes} = require('sequelize');
+const { Review } = require('./Review');
 const sequelize = require('../config/connection');
 
 class Provider extends Model {}
@@ -20,14 +20,7 @@ Provider.init(
         type: DataTypes.STRING,
         allowNull: false
     },
-    rating: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'review',
-            key: rating
-        }
-    } 
+    
     },
     {
         sequelize,

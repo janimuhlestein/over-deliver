@@ -3,7 +3,8 @@ const sequelize = require('../config/connection');
 
 class Rating extends Model {}
 
-Rating.init({
+Rating.init(
+    {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -57,29 +58,11 @@ Rating.init({
         allowNull: false,
         references: {
             model: 'user',
-            key: id
-        }
-    },
-    review_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'review',
-            key: id
-        }
-
-    },
-    provider_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'provider',
-            key: id
+            key: 'id'
         }
     }
-
-    },
-    {
+},
+ {   
         sequelize,
         freezeTableName: true,
         underscored: true,
