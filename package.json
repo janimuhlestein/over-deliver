@@ -1,0 +1,28 @@
+{
+  "name": "over-deliver",
+  "version": "1.0.0",
+  "description": "Delivery rating app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./index.js",
+    "ui": "browser-sync start --config bs-config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlightheart24/over-deliver.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlightheart24/over-deliver/issues"
+  },
+  "homepage": "https://github.com/jlightheart24/over-deliver#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.13",
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^3.0.0"
+  }
+}
