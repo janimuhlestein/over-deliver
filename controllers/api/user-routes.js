@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const{User} = require('../../models');
+const{User, Review, Provider} = require('../../models');
 
 router.get('/', (req,res)=>{
     User.findAll({
@@ -20,16 +20,16 @@ router.get('/:id', (req,res)=>{
         where: {
             id: req.params.id
         },
-        /* include: [
+         include: [
             {
                 model: Review,
-                attributes: ['id', 'title', 'review_text', 'provider_name', 'provider_type'],
+                attributes: ['id', 'title', 'text', 'provider_id'],
                 include: {
                     model: Provider,
                     attributes: ['name', 'type']
                 }
             },
-            {
+           /*  {
                 model: Comment,
                 attributes: ['id', 'comment_text', 'created_at'],
                 include: {
@@ -37,8 +37,8 @@ router.get('/:id', (req,res)=>{
                     attributes: ['title'],
                     through: Vote
                 }
-            }
-        ] */
+            } */
+        ] 
     })
     .then(dbUserData=>{
         if(!dbUserData) {
