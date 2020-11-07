@@ -13,8 +13,7 @@ Review.belongsTo(User);
 Review.belongsTo(Provider);
 Provider.hasMany(Review);
 User.hasMany(Rating);
-Provider.belongsToMany(Rating,{
-    through: Review
-});
+Provider.hasMany(Rating);
+Rating.hasOne(Review);
 
 module.exports = { User, Provider, Review, Rating};

@@ -25,6 +25,22 @@ Review.init({
             model: 'provider',
             key: 'id'
         }
+    },
+    rating_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'rating',
+            key: 'id'
+        }
+    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'user',
+            key: 'id'
+        }
     }
     },
     {

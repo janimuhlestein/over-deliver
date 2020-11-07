@@ -46,7 +46,9 @@ router.post('/', (req,res)=>{
     Review.create({
         title: req.body.title,
         text: req.body.text,
-        provider_id: req.body.provider_id
+        provider_id: req.body.provider_id,
+        rating_id: req.body.rating_id,
+        user_id: req.body.user_id
     })
     .then(dbReviewData=>{
         res.json(dbReviewData);
