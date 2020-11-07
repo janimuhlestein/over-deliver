@@ -103,6 +103,15 @@ dist
 # TernJS port file
 .tern-port
 
-# Packages
-package.json
+# .DS_Store
+.DS_Store
+
+# dotenv
+.env
+
+# package-lock
 package-lock.json
+
+# package.json
+package.json
+
