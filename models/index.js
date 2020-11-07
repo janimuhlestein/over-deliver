@@ -1,51 +1,48 @@
 const User = require('./User');
-const Review = require('./Review');
-const Vote = require('./Vote');
-const Comment = require('./Comment');
+//const Review = require('./Review');
+//const Vote = require('./Vote');
+//const Comment = require('./Comment');
 const Provider = require('./Provider');
-const Rating = require('./Rating');
-const Avatar = require('./Avatar');
-const Image = require('./Image');
+//const Rating = require('./Rating');
 
 //create associations
 
-User.hasMany(Review);
+//User.hasMany(Review);
 
-User.hasOne(Avatar);
+//Review.belongsTo(User);
 
-User.hasMany(Rating);
-
-Avatar.belongsTo(User);
-
-User.hasMany(Image);
-
-Image.belongsTo(User);
-
-Review.belongsTo(User);
+/* User.belongsToMany(Review, {
+    through: Vote,
+    foreignKey: 'review_id'
+});
 
 User.hasMany(Rating);
 
-Review.belongsTo(User);
+Review.belongsToMany(User, {
+    through: Vote,
+    foreignKey: 'review_id'
+});
+ */
+//Vote.belongsTo(User);
 
-Vote.belongsTo(User);
+//Vote.belongsTo(Review);
 
-Vote.belongsTo(Review);
+//Review.hasMany(Vote);
 
-Review.hasMany(Vote);
+//Comment.belongsTo(User);
 
-Comment.belongsTo(User);
+//Comment.belongsTo(Review);
 
-Comment.belongsTo(Review);
+//User.hasMany(Comment);
 
-Review.hasMany(Comment);
+//Provider.belongsTo(Review);
 
-User.hasMany(Comment);
+//Provider.hasMany(Review);
 
-Provider.hasMany(Review);
+//Provider.hasMany(Rating);
 
-Provider.hasMany(Rating);
+//Provider.belongsTo(Rating);
 
-Provider.hasMany(Image);
+//Rating.belongsTo(Review);
 
-
-module.exports = { User, Review, Vote, Comment, Provider, Rating, Avatar, Image};
+module.exports = { User, Provider};
