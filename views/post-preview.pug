@@ -1,0 +1,22 @@
+div.Post
+  div
+    img(src="placeholder.webp")
+    
+  div.Title
+      h2 Service: 
+      h2.neg-bottom Title:
+      h2 Stars:
+        include stars
+      //- overall only for preview. 
+      h2 Content:
+  div
+    div
+      p Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime debitis officiis placeat sunt perferendis fugit consequuntur atque praesentium unde cupiditate perspiciatis, inventore id itaque nobis doloremque iusto voluptatem laudantium corrupti.
+    //- only show partial with character limit.
+    div.right-text
+      p Number of upvotes: #{userProfile.upvotes.length}
+      p Number of comments: #{userProfile.comments.length}  
+      button Comment
+      button Edit
+      
+    

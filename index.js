@@ -24,9 +24,16 @@ app.get("/", (req, res) => {
     res.render("index", { title: "Home" });
 });
 
-app.get("/user", (req, res) => {
-    res.render("user", { title: "Profile", userProfile: { nickname: "Auth0" } });
+app.get("/dashboard", (req, res) => {
+    res.render("dashboard", { title: "Dashboard", userProfile: { nickname: "William", reviews: "1, 2", upvotes: "23542", comments: "111111111" } });
 });
+
+app.get("/edit", (req, res) => {
+    res.render("edit", { title: "Edit Post" });
+});
+app.get("/view", (req, res) => {
+    res.render("view-post", { title: "View Post" })
+})
 /**
  * Server Activation
  */

@@ -1,0 +1,43 @@
+extends layout
+
+block layout-content
+  div.View
+    div.flex-row
+      div.Message
+        a(href="placeholder.webp") 
+          img(src="placeholder.webp")
+          p.flex-item here to upload an avatar       
+        div.Title
+          h2 #{userProfile.nickname}
+          h3 Number of reviews: #{userProfile.reviews.length}
+          h3 Number of upvotes: #{userProfile.upvotes.length}
+          h3 Number of comments: #{userProfile.comments.length}
+      div.Create
+        h1 Create New Post
+        br
+        h2 Service: 
+          input(type='text')
+        h2 Title:
+          input(type='text')
+        h2 Safety:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          include stars
+        h2 Quality:&nbsp;&nbsp;&nbsp;&nbsp;
+          include stars
+        h2 Accuracy:
+          include stars
+        h2 Speed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          include stars
+        h2 Value:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          include stars
+        br
+        h2 Review Content:
+          textarea(type='input')
+        button Create
+  div.post-row.wrap
+    include post-preview
+    include post-preview
+    include post-preview
+    include post-preview
+    include post-preview
+      
+  script(src='/javascript/stars.js')
