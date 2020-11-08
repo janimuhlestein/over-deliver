@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const {Review, User, Provider, Rating} = require('../../models');
+const {Review, User, Provider, Rating, Comment, Vote} = require('../../models');
+
 
 router.get('/', (req,res)=>{
     Review.findAll({
@@ -17,6 +18,14 @@ router.get('/', (req,res)=>{
         model: Provider,
         attributes: ['name', 'type'],
 
+    },
+    {
+        model: Vote,
+        attributes: ['id', 'type'],
+        include: {
+            model: User,
+            attributes: ['id', 'username']
+        }
     }
 ]
     })
@@ -48,6 +57,18 @@ router.get('/:id', (req,res)=>{
             attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy']
         }
 
+    },
+    {
+        model: Comment,
+        attributes: ['id', 'text']
+    },
+    {
+        model: Vote,
+        attributes: ['id', 'type'],
+        include: {
+            model: User,
+            attributes: ['username']
+        }
     }
 ]
 })

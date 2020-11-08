@@ -4,6 +4,7 @@ const reviewRoutes = require('./review-routes');
 const providerRoutes = require('./provider-routes');
 const ratingRoutes = require('./rating-routes');
 const commentRoutes = require('./comment-routes');
+const voteRoutes = require('./vote-routes');
 
 
 router.use('/users', userRoutes);
@@ -11,5 +12,6 @@ router.use('/reviews', reviewRoutes);
 router.use('/providers', providerRoutes);
 router.use('/ratings', ratingRoutes);
 router.use('/comments', commentRoutes);
+router.use('/votes', voteRoutes);
 
 module.exports = router;

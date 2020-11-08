@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { rebeccapurple } = require('color-name');
-const {Rating, Provider, User, Review} = require('../../models');
+const {Rating, Provider, User, Review,Comment} = require('../../models');
 
 router.get('/',(req,res)=>{
     Rating.findAll()
@@ -14,25 +14,32 @@ router.get('/',(req,res)=>{
 });
 
 router.get('/:id', (req,res)=>{
-    Rating.findAll({
+    Rating.findOne({
         where: {
             id: req.params.id
         },
         attributes: ['id', 'average', 'quality', 'value', 'speed', 'accuracy', 'packaging' ],
-        include: [
-            {
-                model: User,
-                attributes: ['username'],
                 include: {
                     model: Review,
                     attributes: ['id', 'title', 'text'],
                     include: {
                             model: Provider,
                             attributes: ['name', 'type']
+                    },
+                    include: {
+                        mdel: User,
+                        attributes: ['id', 'username']
                     }
-                }
-            }
-    ]
+                },
+                    include: {
+                        model: Comment,
+                        attributes: ['id','text'],
+                    },
+                    include: {
+                        model: User,
+                        attributes: ['id', 'username']
+                    }
+                 
     })
     .then(dbRatingData=>{
         if(!dbRatingData) {

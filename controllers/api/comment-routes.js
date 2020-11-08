@@ -3,7 +3,17 @@ const router = require('express').Router();
 const {Comment, Review, Provider} = require('../../models');
 
 router.get('/', (req,res)=>{
-    Comment.findAll()
+    Comment.findAll({
+        attributes: ['id', 'text'],
+        include: {
+            model: Review,
+            attributes: ['title', 'text'],
+            include: {
+                model: Provider,
+                attributes: ['name']
+            }
+        } 
+    })
     .then(dbCommentData=>{
         res.json(dbCommentData);
     });
