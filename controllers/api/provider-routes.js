@@ -66,7 +66,6 @@
  });
 
  router.put('/:id', (req,res)=>{
-     console.log(req.body);
      Provider.update(req.body,{
          where: {
              id: req.params.id

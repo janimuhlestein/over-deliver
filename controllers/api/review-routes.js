@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Review, User, Provider, Rating, Comment, Vote} = require('../../models');
+const {Review, User, Provider, Rating, Comment, Vote, Image} = require('../../models');
 
 
 router.get('/', (req,res)=>{
@@ -12,6 +12,10 @@ router.get('/', (req,res)=>{
         include: {
             model: Rating,
             attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy']
+        },
+        include: {
+            model: Image,
+            attributes: ['file', 'path']
         }
     },
     {
@@ -69,6 +73,10 @@ router.get('/:id', (req,res)=>{
             model: User,
             attributes: ['username']
         }
+    },
+    {
+        model: Image,
+        attributes: ['id', 'file']
     }
 ]
 })

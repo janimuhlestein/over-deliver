@@ -6,6 +6,7 @@ const ratingRoutes = require('./rating-routes');
 const commentRoutes = require('./comment-routes');
 const voteRoutes = require('./vote-routes');
 const avatarRoutes = require('./avatar-routes');
+const imageRoutes = require('./image-routes');
 
 
 router.use('/users', userRoutes);
@@ -15,5 +16,6 @@ router.use('/ratings', ratingRoutes);
 router.use('/comments', commentRoutes);
 router.use('/votes', voteRoutes);
 router.use('/avatars', avatarRoutes);
+router.use('/images', imageRoutes);
 
 module.exports = router;

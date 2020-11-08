@@ -5,6 +5,7 @@ const Comment = require('./Comment');
 const Provider = require('./Provider');
 const Rating = require('./Rating');
 const Avatar = require('./Avatar');
+const Image = require('./Image');
 
 //create associations
 
@@ -25,5 +26,8 @@ Vote.belongsTo(Review);
 Vote.belongsTo(User);
 Avatar.belongsTo(User);
 User.hasOne(Avatar);
+User.hasMany(Image);
+Image.belongsTo(Review);
+Review.hasMany(Image);
 
-module.exports = { User, Provider, Review, Rating, Comment, Vote, Avatar};
+module.exports = { User, Provider, Review, Rating, Comment, Vote, Avatar, Image};
