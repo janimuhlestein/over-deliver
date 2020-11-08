@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const{User, Review, Provider, Rating, Comment} = require('../../models');
+const{User, Review, Provider, Rating, Comment, Avatar} = require('../../models');
 const Vote = require('../../models/Vote');
 
 router.get('/', (req,res)=>{
@@ -49,6 +49,10 @@ router.get('/:id', (req,res)=>{
                     model: Review,
                     attributes: ['id']
                 }
+            },
+            {
+                model: Avatar,
+                attributes: ['id', 'file', 'path']
             } 
         ] 
     })

@@ -4,11 +4,11 @@ const Vote = require('./Vote');
 const Comment = require('./Comment');
 const Provider = require('./Provider');
 const Rating = require('./Rating');
+const Avatar = require('./Avatar');
 
 //create associations
 
 User.hasMany(Review);
-
 Review.belongsTo(User);
 Review.belongsTo(Provider);
 Provider.hasMany(Review);
@@ -23,5 +23,7 @@ User.hasMany(Vote);
 Review.hasMany(Vote);
 Vote.belongsTo(Review);
 Vote.belongsTo(User);
+Avatar.belongsTo(User);
+User.hasOne(Avatar);
 
-module.exports = { User, Provider, Review, Rating, Comment, Vote};
+module.exports = { User, Provider, Review, Rating, Comment, Vote, Avatar};
