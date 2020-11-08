@@ -1,8 +1,18 @@
  const router = require('express').Router();
- const {Provider} = require('../../models');
+ const {Provider, Review, Rating} = require('../../models');
 
  router.get('/', (req,res)=>{
-     Provider.findAll()
+     Provider.findAll({
+         attributes: ['id', 'name', 'type'],
+         include: {
+            model: Rating,
+            attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy'],
+            include: {
+                model: Review,
+               attributes: ['id', 'title','text'],
+            }
+         }
+     })
      .then(dbProviderData=>{
          res.json(dbProviderData);
      })
@@ -13,11 +23,20 @@
  });
 
  router.get('/:id', (req,res)=>{
-     console.log(req.params);
      Provider.findOne({
          where: {
              id: req.params.id
-         }
+         },
+         attributes: ['id', 'name', 'type'],
+         include: {
+            model: Rating,
+            attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy'],
+            include: {
+                model: Review,
+               attributes: ['id', 'title','text'],
+            }
+        }
+
      })
      .then(dbProviderData=>{
          if(!dbProviderData) {

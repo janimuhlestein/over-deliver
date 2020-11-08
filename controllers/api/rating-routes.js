@@ -21,13 +21,17 @@ router.get('/:id', (req,res)=>{
         attributes: ['id', 'average', 'quality', 'value', 'speed', 'accuracy', 'packaging' ],
         include: [
             {
-            model: Provider,
-            attributes: ['name', 'type']
-        },
-        {
-            model: User,
-            attributes: ['username']
-        }
+                model: User,
+                attributes: ['username'],
+                include: {
+                    model: Review,
+                    attributes: ['id', 'title', 'text'],
+                    include: {
+                            model: Provider,
+                            attributes: ['name', 'type']
+                    }
+                }
+            }
     ]
     })
     .then(dbRatingData=>{

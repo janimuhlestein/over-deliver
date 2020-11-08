@@ -1,8 +1,25 @@
 const router = require('express').Router();
-const {Review, User, Provider} = require('../../models');
+const {Review, User, Provider, Rating} = require('../../models');
 
 router.get('/', (req,res)=>{
-    Review.findAll()
+    Review.findAll({
+        attributes: ['title', 'text'],
+    include: [
+        {
+        model: User,
+        attributes: ['username'],
+        include: {
+            model: Rating,
+            attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy']
+        }
+    },
+    {
+        model: Provider,
+        attributes: ['name', 'type'],
+
+    }
+]
+    })
     .then(dbReviewData=>{
         res.json(dbReviewData);
     })
@@ -25,7 +42,12 @@ router.get('/:id', (req,res)=>{
     },
     {
         model: Provider,
-        attributes: ['name', 'type']
+        attributes: ['name', 'type'],
+        include: {
+            model: Rating,
+            attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy']
+        }
+
     }
 ]
 })
