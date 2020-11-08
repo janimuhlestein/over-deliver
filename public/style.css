@@ -61,23 +61,22 @@ a {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: flex-start;
 
   height: 100%;
   width: 100%;
 
-  padding: 20px;
-
   background-size: cover;
 
   font-family: "Merriweather Sans", sans-serif;
+  flex-wrap: wrap;
 }
 
 .Banner {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* flex-direction: column; */
+  justify-content: space-between;
   align-items: center;
 
   width: 100%;
@@ -95,10 +94,75 @@ a {
 }
 
 .Message {
-  background: white;
   padding: 30px;
   border-bottom: var(--ui-shadow-border);
   box-shadow: var(--ui-shadow);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: burlywood;
+  align-self: flex-start;
+  margin-right: 20px;
+}
+
+.Post {
+  padding: 30px;
+  border-bottom: var(--ui-shadow-border);
+  box-shadow: var(--ui-shadow);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: burlywood;
+  align-self: flex-start;
+  width: 600px;
+  margin: 20px;
+}
+
+.Create {
+  padding: 30px 30px 15px 30px;
+  border-bottom: var(--ui-shadow-border);
+  box-shadow: var(--ui-shadow);
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: flex-start; */
+  margin: auto;
+  background-color: violet;
+  flex-grow: 3;
+  width: 900px;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.flex-item {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 200px;
+  justify-content: flex-start;
+  display: flex;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.wrap {
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.center {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.post-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+p.flex-item {
+  font-size: 7px;
 }
 
 .Message > .Title {
@@ -110,15 +174,17 @@ a {
   flex-direction: column;
   line-height: 1.5em;
 }
-
-.NavButtons {
+.right-text {
+  text-align: right;
+}
+/* .NavButtons {
   display: flex;
   width: 100%;
   justify-content: space-around;
   align-items: center;
   padding: 0 20px;
-}
-
+} */
+/* 
 .NavButton {
   display: flex;
   justify-content: center;
@@ -139,7 +205,8 @@ a {
 
   border-bottom: var(--ui-shadow-border);
   box-shadow: var(--ui-shadow);
-}
+} */
+/* 
 .WelcomeView {
     background: url("food.jpg") left bottom;
     background-size: cover;
@@ -148,4 +215,91 @@ a {
     background: url("https://cdn.auth0.com/blog/whatabyte-portal/patio.jpeg") left
       bottom;
     background-size: cover;
+  } */
+
+  nav a{
+    margin-left: 10px;
+    margin-right: 10px;
   }
+
+  img {
+    max-width: 70px;
+    max-height: 70px;
+    margin-right: 20px;;
+  }
+
+  .rating {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+    line-height: 80px;
+    font-size: 30px;
+  }
+  
+  .rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .rating label:last-child {
+    position: static;
+  }
+  
+  .rating label:nth-child(1) {
+    z-index: 5;
+  }
+  
+  .rating label:nth-child(2) {
+    z-index: 4;
+  }
+  
+  .rating label:nth-child(3) {
+    z-index: 3;
+  }
+  
+  .rating label:nth-child(4) {
+    z-index: 2;
+  }
+  
+  .rating label:nth-child(5) {
+    z-index: 1;
+  }
+  
+  .rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  .rating label .icon {
+    float: left;
+    color: transparent;
+  }
+  
+  .rating label:last-child .icon {
+    color: #000;
+  }
+  
+  .rating:not(:hover) label input:checked ~ .icon,
+  .rating:hover label:hover input ~ .icon {
+    color: #09f;
+  }
+  
+  .rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #000;
+    text-shadow: 0 0 5px #09f;
+  }
+.neg-bottom {
+  margin-bottom: -25px;
+}
+textarea {
+  width: 100%;
+  height: 200px;
+}
+button {
+  margin: 0 5px 0 5px;
+}

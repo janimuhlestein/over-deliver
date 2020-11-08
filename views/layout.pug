@@ -7,7 +7,17 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
     meta(name="theme-color", content="#000000")
     title #{title} | Over-Deliver
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
     link(rel="stylesheet" href="/style.css")
+    script(type = "text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js")
+
   body
+    nav.Banner
+      h1 Over-Deliver
+      a(href="/") Homepage
+      a(href="/dashboard") Dashboard
+      a(href="/search") Search
+      //- How do we want to handle search? dropdown?
+      a(href="/logout") Logout
     div#root
       block layout-content
