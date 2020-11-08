@@ -20,7 +20,7 @@ router.get('/:id', (req,res)=>{
         attributes: ['id', 'file', 'path'],
         include: {
             model: User,
-            attributes: ['user_id']
+            attributes: ['id', 'username']
         }
     })
     .then(dbAvatarData=>{
