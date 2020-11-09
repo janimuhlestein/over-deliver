@@ -12,10 +12,6 @@ router.get('/', (req,res)=>{
         include: {
             model: Rating,
             attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy']
-        },
-        include: {
-            model: Image,
-            attributes: ['file', 'path']
         }
     },
     {
@@ -30,6 +26,10 @@ router.get('/', (req,res)=>{
             model: User,
             attributes: ['id', 'username']
         }
+    },
+    {
+        model: Image,
+        attributes: ['file','path']
     }
 ]
     })
