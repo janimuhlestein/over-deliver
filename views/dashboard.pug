@@ -6,7 +6,8 @@ block layout-content
       div.Message
         a(href="placeholder.webp") 
           img(src="placeholder.webp")
-          p.flex-item here to upload an avatar       
+          p.flex-item here to upload an avatar
+          //- boostrap modal       
         div.Title
           h2 #{userProfile.nickname}
           h3 Number of reviews: #{userProfile.reviews.length}
@@ -14,6 +15,7 @@ block layout-content
           h3 Number of comments: #{userProfile.comments.length}
       div.Create
         h1 Create New Post
+        //- tooltip for category criteria
         br
         h2 Service: 
           input(type='text')
