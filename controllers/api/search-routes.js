@@ -112,11 +112,46 @@ router.get('/provider/recent', (req,res)=>{
         }
     })
     .then(dbProviderData=>{
+        if(!dbProviderData) {
+            res.status(404).json({message: 'No reviews for that provider in the past two weeks.'});
+            return;
+        }
         res.json(dbProviderData);
     })
     .catch(err=>{
         console.log(err);
         res.json(err);
+    });
+});
+
+//search for all of a specific raverage rating
+router.get('/ratings',(req,res)=>{
+    var query = req.url.split('?');
+    Rating.findAll({
+        where: {
+            average: {
+                [Op.lte]: query[1]
+            }
+        },
+        include: {
+                model: Review,
+                attributes: ['title', 'text'],
+                include: {
+                    model: Provider,
+                    attributes: ['name']
+                }
+        }
+    })
+    .then(dbRatingData=>{
+        if(!dbRatingData) {
+            res.status(404).json({message: 'No ratings found with that average'});
+            return;
+        }
+        res.json(dbRatingData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
     });
 });
  
