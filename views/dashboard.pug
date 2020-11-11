@@ -4,9 +4,10 @@ block layout-content
   div.View
     div.flex-row
       div.Message
-        a(href="placeholder.webp") 
-          img(src="placeholder.webp")
-          p.flex-item here to upload an avatar       
+        //- div(data-toggle="modal" data-target="#avatar") 
+        //-   img(src="placeholder.webp")
+        //-   p.flex-item Click to upload an avatar
+        //-   //- boostrap modal       
         div.Title
           h2 #{userProfile.nickname}
           h3 Number of reviews: #{userProfile.reviews.length}
@@ -17,17 +18,18 @@ block layout-content
         br
         h2 Service: 
           input(type='text')
-        h2 Title:
+        h2 Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           input(type='text')
-        h2 Safety:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        //- tooltips for category criteria
+        h2 <a href="#" data-toggle="tooltip" title="Was the driver wearing a mask? Did they leave things at your door without contact if you asked for it? Were things packaged properly? Was everything sealed?"><i class="fas fa-info-circle"></i></a>  Safety:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           include stars
-        h2 Quality:&nbsp;&nbsp;&nbsp;&nbsp;
+        h2 <a href="#" data-toggle="tooltip" title="How was the food? Was it properly seasoned? Was it still the desired temperature when it got to you?"><i class="fas fa-info-circle"></i ></a>  Quality:&nbsp;&nbsp;&nbsp;&nbsp;
           include stars
-        h2 Accuracy:
+        h2 <a href="#" data-toggle="tooltip" title="Did they get your order correct? Did you get everything that you ordered?"><i class="fas fa-info-circle"></i ></a>  Accuracy:
           include stars
-        h2 Speed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        h2 <a href="#" data-toggle="tooltip" title="Were they timely? Did you feel like the time given was reasonable?"><i class="fas fa-info-circle"></i ></a>  Speed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           include stars
-        h2 Value:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        h2 <a href="#" data-toggle="tooltip" title="Did you feel the prices matched up with what you got?"><i class="fas fa-info-circle"></i ></a>  Value:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           include stars
         br
         h2 Review Content:
@@ -39,5 +41,18 @@ block layout-content
     include post-preview
     include post-preview
     include post-preview
+
+  //- div.modal(id="avatar" role="dialog")
+  //-   div.modal-dialog
+  //-     div.modal-content
+  //-       div.modal-header
+  //-         h4.modal-title Upload your avatar
+  //-         button.close(type="button" class="close" data-dismiss="modal") &times;
+  //-       div.modal-body
+  //-         p Modal body
+  //-         input(type='text')
+  //-       div.modal-footer
+  //-         button.btn.btn-default(type="button" data-dismiss="modal") Close
       
   script(src='/javascript/stars.js')
+  script(src='/javascript/tooltips.js')

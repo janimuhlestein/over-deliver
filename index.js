@@ -34,6 +34,9 @@ app.get("/edit", (req, res) => {
 app.get("/view", (req, res) => {
     res.render("view-post", { title: "View Post" })
 })
+app.get("/signup", (req, res) => {
+    res.render("signup", { title: "Sign-up" })
+})
 /**
  * Server Activation
  */
