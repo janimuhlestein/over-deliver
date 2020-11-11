@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { rebeccapurple } = require('color-name');
 const {Rating, Provider, User, Review,Comment} = require('../../models');
 
 router.get('/',(req,res)=>{

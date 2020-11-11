@@ -1,5 +1,4 @@
 const router = require('express').Router();
-//const { builtinModules } = require('module');
 const {Comment, Review, Provider} = require('../../models');
 
 router.get('/', (req,res)=>{
