@@ -45,6 +45,10 @@ h1 {
   font-size: 40px;
 }
 
+h2 i {
+  font-size: 20px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -100,7 +104,6 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  background-color: burlywood;
   align-self: flex-start;
   margin-right: 20px;
 }
@@ -112,7 +115,6 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  background-color: burlywood;
   align-self: flex-start;
   width: 600px;
   margin: 20px;
@@ -126,7 +128,6 @@ a {
   /* flex-wrap: wrap; */
   /* justify-content: flex-start; */
   margin: auto;
-  background-color: violet;
   flex-grow: 3;
   width: 900px;
   align-content: center;

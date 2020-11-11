@@ -1,6 +1,7 @@
 extends layout
 
 block layout-content
+  script(src='/javascript/tooltips.js')
   div.View
     div.flex-row
       div.Message
@@ -19,17 +20,18 @@ block layout-content
         br
         h2 Service: 
           input(type='text')
-        h2 Title:
+        h2 Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           input(type='text')
-        h2 Safety:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        div.tooltip
+        h2 <a href="#" data-toggle="tooltip" title="Was the driver wearing a mask? Did they leave things at your door without contact if you asked for it? Were things packaged properly? Was everything sealed?"><i class="fas fa-info-circle"></i></a>  Safety:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           include stars
-        h2 Quality:&nbsp;&nbsp;&nbsp;&nbsp;
+        h2 <a href="#" data-toggle="tooltip" title="How was the food? Was it properly seasoned? Was it still the desired temperature when it got to you?"><i class="fas fa-info-circle"></i ></a>  Quality:&nbsp;&nbsp;&nbsp;&nbsp;
           include stars
-        h2 Accuracy:
+        h2 <a href="#" data-toggle="tooltip" title="Did they get your order correct? Did you get everything that you ordered?"><i class="fas fa-info-circle"></i ></a>  Accuracy:
           include stars
-        h2 Speed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        h2 <a href="#" data-toggle="tooltip" title="Were they timely? Did you feel like the time given was reasonable?"><i class="fas fa-info-circle"></i ></a>  Speed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           include stars
-        h2 Value:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        h2 <a href="#" data-toggle="tooltip" title="Did you feel the prices matched up with what you got?"><i class="fas fa-info-circle"></i ></a>  Value:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           include stars
         br
         h2 Review Content:
@@ -42,4 +44,4 @@ block layout-content
     include post-preview
     include post-preview
       
-  script(src='/javascript/stars.js')
+  script(src='/javascript/stars.js')  
