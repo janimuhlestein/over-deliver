@@ -1,9 +1,9 @@
 const router = require('express').Router();
 //const { rmdirSync } = require('fs');
 const sequelize = require('../config/connection');
-const { User, Rating, Review, Comment, Provider} = require('../models');
+const { User, Rating, Review, Comment, Provider } = require('../models');
 
-router.get('/', (req,res)=>{
+router.get('/', (req, res) => {
     Review.findAll({
         order: [['created_at', 'DESC']],
         attributes: [
@@ -16,29 +16,41 @@ router.get('/', (req,res)=>{
             model: Provider,
             attributes: ['name']
         }
-        
+
     })
-    .then(dbReviewData=>{
-        const reviews = dbReviewData.map(review=>review.get({plain:true}));
-        console.log(reviews);
-    res.render("index", { 
-        title: "Home",
-        reviews,
-        loggedIn: req.session.loggedIn
-     })
-    })
-     .catch(err=>{
-         console.log(err);
-         res.status(500).json(err);
-     });
+        .then(dbReviewData => {
+            const reviews = dbReviewData.map(review => review.get({ plain: true }));
+            console.log(reviews);
+            res.render("index", {
+                title: "Home",
+                reviews,
+                loggedIn: req.session.loggedIn
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
-router.get('/login', (req,res)=>{
-    if(req.session.loggedIn){
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
         res.redirect('/');
         return;
     }
     res.render('login');
+});
+
+router.get("/signup", (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render("signup", { title: "Sign-up" });
+});
+
+router.get("/search", (req, res) => {
+    res.render("search", { title: "Search" });
 });
 
 

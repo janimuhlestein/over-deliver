@@ -4,12 +4,13 @@ block layout-content
     form.signup-form.input-form
         h1 Signup Form
         h2 Username:
-            input(type='text')
+            input(type='text' id="username-signup")
         h2 E-mail:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            input(type='text')
+            input(type='text' id="email-signup")
         h2 Password:
-            input(type='text')
-
+            input(type='text' id="password-signup")
+        button(type="submit") Sign-up
+    script(src="/javascript/signup.js")
 
 //- input username, password, e-mail
 //- message if username or e-mail already exists
