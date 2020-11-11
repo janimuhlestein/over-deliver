@@ -124,7 +124,7 @@ router.get('/provider/recent', (req,res)=>{
     });
 });
 
-//search for all of a specific raverage rating
+//search for all of a specific average rating
 router.get('/ratings',(req,res)=>{
     var query = req.url.split('?');
     Rating.findAll({
@@ -153,6 +153,211 @@ router.get('/ratings',(req,res)=>{
         console.log(err);
         res.status(500).json(err);
     });
+});
+
+//search by specific rating: quality
+router.get('/quality', (req,res)=>{
+    var query = req.url.split('?');
+   // console.log(option);
+    Rating.findAll({
+        where:{
+            quality: {
+                [Op.eq]: query[1]
+            }
+        },
+        include:[ {
+            model: Review,
+            attributes: [
+                'title',
+                'text'
+            ],
+            include:[ {
+                model: Comment,
+                attributes: ['text']
+            },
+            {
+                model: Provider,
+                attributes: ['name']
+            }
+        ]
+        }
+    ]
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found that match that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+//search by specific rating: value
+router.get('/value', (req,res)=>{
+    var query = req.url.split('?');
+    console.log(option);
+    Rating.findAll({
+        where:{
+            value: {
+                [Op.eq]: query[1]
+            }
+        },
+        include:[ {
+            model: Review,
+            attributes: [
+                'title',
+                'text'
+            ],
+            include:[ {
+                model: Comment,
+                attributes: ['text']
+            },
+            {
+                model: Provider,
+                attributes: ['name']
+            }
+        ]
+        }
+    ]
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found that match that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+//search by specific rating: accuracy
+router.get('/accuracy', (req,res)=>{
+    var query = req.url.split('?');
+    console.log(option);
+    Rating.findAll({
+        where:{
+            accuracy: {
+                [Op.eq]: query[1]
+            }
+        },
+        include:[ {
+            model: Review,
+            attributes: [
+                'title',
+                'text'
+            ],
+            include:[ {
+                model: Comment,
+                attributes: ['text']
+            },
+            {
+                model: Provider,
+                attributes: ['name']
+            }
+        ]
+        }
+    ]
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found that match that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+//search by specific rating: packaging
+router.get('/packaging', (req,res)=>{
+    var query = req.url.split('?');
+    console.log(option);
+    Rating.findAll({
+        where:{
+            packaging: {
+                [Op.eq]: query[1]
+            }
+        },
+        include:[ {
+            model: Review,
+            attributes: [
+                'title',
+                'text'
+            ],
+            include:[ {
+                model: Comment,
+                attributes: ['text']
+            },
+            {
+                model: Provider,
+                attributes: ['name']
+            }
+        ]
+        }
+    ]
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found that match that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+//search by specific rating: speed
+router.get('/speed', (req,res)=>{
+    var query = req.url.split('?');
+    console.log(option);
+    Rating.findAll({
+        where:{
+            speed: {
+                [Op.eq]: query[1]
+            }
+        },
+        include:[ {
+            model: Review,
+            attributes: [
+                'title',
+                'text'
+            ],
+            include:[ {
+                model: Comment,
+                attributes: ['text']
+            },
+            {
+                model: Provider,
+                attributes: ['name']
+            }
+        ]
+        }
+    ]
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found that match that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
 });
  
 

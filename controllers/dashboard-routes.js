@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const withAuth = require('../utils/auth');
 const {User, Review, Comment, Vote, Rating, Provider} = require('../models');
+const { resourceLimits } = require('worker_threads');
 
 //get all of their reviews, plus numbers of comments and votes
 router.get('/', withAuth, (req,res)=>{
@@ -36,7 +37,8 @@ router.get('/', withAuth, (req,res)=>{
         console.log(reviews);
     res.render("dashboard", { 
         title: "Dashboard",
-        reviews
+        reviews,
+        loggedIn: true
     })
      })
      .catch(err=>{

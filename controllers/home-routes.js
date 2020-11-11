@@ -23,7 +23,8 @@ router.get('/', (req,res)=>{
         console.log(reviews);
     res.render("index", { 
         title: "Home",
-        reviews
+        reviews,
+        loggedIn: req.session.loggedIn
      })
     })
      .catch(err=>{
