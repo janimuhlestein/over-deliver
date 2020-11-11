@@ -4,12 +4,10 @@ block layout-content
     form.login-form.input-form
         h1 Login
         h2 Username:
-            input(type='text')
+            input(type='text' id="username-login")
         h2 Password:
-            input(type='text')
+            input(type='text' id="password-login")
+        button(type="submit") Login
+    script(src="/javascript/login.js")
 
-//- username
-//- password
-//- redirect if successful
-//- message for no username
-//- message for incorrect password
+

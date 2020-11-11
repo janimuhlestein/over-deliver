@@ -24,6 +24,12 @@ app.use(session(sess));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
+// app.get("/edit", (req, res) => {
+//     res.render("edit", { title: "Edit Post" });
+// });
+// app.get("/view", (req, res) => {
+//     res.render("view-post", { title: "View Post" });
+// });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
