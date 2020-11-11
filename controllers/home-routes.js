@@ -46,7 +46,7 @@ router.get('/login', (req,res)=>{
     res.render('login');
 });
 
-router.get('/review/:id', (req,res)=>{
+router.get('/view-post/:id', (req,res)=>{
     Review.findOne({
         where: {
             id: req.params.id
@@ -84,7 +84,18 @@ router.get('/review/:id', (req,res)=>{
             return;
         }
         const review = dbReviewData.get({plain: true})
-        res.render('??', {review});
+        res.render('view-post', {review});
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+router.get('/signup', (req,res)=>{
+    res.render('signup')
+    .then(dbSignupData=>{
+        res.json(dbSignupData);
     })
     .catch(err=>{
         console.log(err);
