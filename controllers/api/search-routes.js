@@ -14,7 +14,7 @@ router.get('/provider/reviews', (req,res)=>{
         attributes: ['id', 'name', 'type'],
         include: {
            model: Rating,
-           attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy'],
+           attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
            include: {
                model: Review,
               attributes: ['id', 'title','text'],
@@ -82,7 +82,8 @@ router.get('/reviews/recent', (req,res)=>{
         where: {
             created_at: 
             {[Op.gte]: subtractDays(14)}
-        }
+        },
+        order: [['created_at', 'DESC']]
     })
     .then(dbReviewData=>{
         res.json(dbReviewData);
@@ -100,7 +101,8 @@ router.get('/provider/recent', (req,res)=>{
         where: {
             name: {
                 [Op.substring]: query[1]
-            }
+            },
+            order: [['created_at', 'DESC']]
         },
         include: {
             model: Review,
@@ -133,6 +135,7 @@ router.get('/ratings',(req,res)=>{
                 [Op.lte]: query[1]
             }
         },
+        order: [['created_at', 'DESC']],
         include: {
                 model: Review,
                 attributes: ['title', 'text'],
@@ -165,6 +168,7 @@ router.get('/quality', (req,res)=>{
                 [Op.eq]: query[1]
             }
         },
+        order: [['created_at', 'DESC']],
         include:[ {
             model: Review,
             attributes: [
@@ -206,6 +210,7 @@ router.get('/value', (req,res)=>{
                 [Op.eq]: query[1]
             }
         },
+        order: [['created_at', 'DESC']],
         include:[ {
             model: Review,
             attributes: [
@@ -247,6 +252,7 @@ router.get('/accuracy', (req,res)=>{
                 [Op.eq]: query[1]
             }
         },
+        order: [['created_at', 'DESC']],
         include:[ {
             model: Review,
             attributes: [
@@ -281,13 +287,13 @@ router.get('/accuracy', (req,res)=>{
 //search by specific rating: packaging
 router.get('/packaging', (req,res)=>{
     var query = req.url.split('?');
-    console.log(option);
     Rating.findAll({
         where:{
             packaging: {
                 [Op.eq]: query[1]
             }
         },
+        order: [['created_at', 'DESC']],
         include:[ {
             model: Review,
             attributes: [
@@ -322,13 +328,13 @@ router.get('/packaging', (req,res)=>{
 //search by specific rating: speed
 router.get('/speed', (req,res)=>{
     var query = req.url.split('?');
-    console.log(option);
     Rating.findAll({
         where:{
             speed: {
                 [Op.eq]: query[1]
             }
         },
+        order: [['created_at', 'DESC']],
         include:[ {
             model: Review,
             attributes: [

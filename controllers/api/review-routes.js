@@ -5,13 +5,14 @@ const {Review, User, Provider, Rating, Comment, Vote, Image} = require('../../mo
 router.get('/', (req,res)=>{
     Review.findAll({
         attributes: ['title', 'text'],
+        order: [['created_at', 'DESC']],
     include: [
         {
         model: User,
         attributes: ['username'],
         include: {
             model: Rating,
-            attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy']
+            attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy']
         }
     },
     {
@@ -58,7 +59,7 @@ router.get('/:id', (req,res)=>{
         attributes: ['name', 'type'],
         include: {
             model: Rating,
-            attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy']
+            attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy']
         }
 
     },

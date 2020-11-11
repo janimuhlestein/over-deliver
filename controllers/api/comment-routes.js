@@ -5,6 +5,7 @@ const {Comment, Review, Provider} = require('../../models');
 router.get('/', (req,res)=>{
     Comment.findAll({
         attributes: ['id', 'text'],
+        order: [['created_at', 'DESC']],
         include: {
             model: Review,
             attributes: ['title', 'text'],

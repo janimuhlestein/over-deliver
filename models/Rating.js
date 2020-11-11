@@ -30,7 +30,7 @@ Rating.init({
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    packaging: {
+    safety: {
         type: DataTypes.INTEGER,
         allowNull:false
     },
