@@ -4,10 +4,10 @@ block layout-content
   div.View
     div.flex-row
       div.Message
-        div(data-toggle="modal" data-target="#avatar") 
-          img(src="placeholder.webp")
-          p.flex-item Click to upload an avatar
-          //- boostrap modal       
+        //- div(data-toggle="modal" data-target="#avatar") 
+        //-   img(src="placeholder.webp")
+        //-   p.flex-item Click to upload an avatar
+        //-   //- boostrap modal       
         div.Title
           h2 #{userProfile.nickname}
           h3 Number of reviews: #{userProfile.reviews.length}
@@ -42,17 +42,17 @@ block layout-content
     include post-preview
     include post-preview
 
-  div.modal(id="avatar" role="dialog")
-    div.modal-dialog
-      div.modal-content
-        div.modal-header
-          h4.modal-title Upload your avatar
-          button.close(type="button" class="close" data-dismiss="modal") &times;
-        div.modal-body
-          p Modal body
-          input(type='text')
-        div.modal-footer
-          button.btn.btn-default(type="button" data-dismiss="modal") Close
+  //- div.modal(id="avatar" role="dialog")
+  //-   div.modal-dialog
+  //-     div.modal-content
+  //-       div.modal-header
+  //-         h4.modal-title Upload your avatar
+  //-         button.close(type="button" class="close" data-dismiss="modal") &times;
+  //-       div.modal-body
+  //-         p Modal body
+  //-         input(type='text')
+  //-       div.modal-footer
+  //-         button.btn.btn-default(type="button" data-dismiss="modal") Close
       
   script(src='/javascript/stars.js')
   script(src='/javascript/tooltips.js')
