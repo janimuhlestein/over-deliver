@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
                     attributes: ['name', 'type'],
                     include: {
                         model: Rating,
-                        attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy']
+                        attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy']
                     }
                 }
             },

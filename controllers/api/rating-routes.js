@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const { rebeccapurple } = require('color-name');
 const {Rating, Provider, User, Review,Comment} = require('../../models');
 
 router.get('/',(req,res)=>{
-    Rating.findAll()
+    Rating.findAll({
+        order: [['created_at', 'DESC']]
+    })
     .then(dbRatingData=>{
         res.json(dbRatingData);
     })
@@ -18,7 +19,7 @@ router.get('/:id', (req,res)=>{
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'average', 'quality', 'value', 'speed', 'accuracy', 'packaging' ],
+        attributes: ['id', 'average', 'quality', 'value', 'speed', 'accuracy', 'safety' ],
                 include: {
                     model: Review,
                     attributes: ['id', 'title', 'text'],
@@ -63,7 +64,7 @@ router.post('/', (req,res)=>{
         value: req.body.value,
         speed: req.body.speed,
         accuracy: req.body.accuracy,
-        packaging: req.body.packaging
+        safety: req.body.safety
     })
     .then(dbRatingData=>{
         res.json(dbRatingData);

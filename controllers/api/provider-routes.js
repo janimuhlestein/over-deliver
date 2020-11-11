@@ -6,7 +6,7 @@
          attributes: ['id', 'name', 'type'],
          include: {
             model: Rating,
-            attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy'],
+            attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
             include: {
                 model: Review,
                attributes: ['id', 'title','text'],
@@ -30,7 +30,7 @@
          attributes: ['id', 'name', 'type'],
          include: {
             model: Rating,
-            attributes: ['id', 'average', 'quality', 'value', 'speed', 'packaging', 'accuracy'],
+            attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
             include: {
                 model: Review,
                attributes: ['id', 'title','text'],
