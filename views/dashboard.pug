@@ -1,13 +1,12 @@
 extends layout
 
 block layout-content
-  script(src='/javascript/tooltips.js')
   div.View
     div.flex-row
       div.Message
-        a(href="placeholder.webp") 
+        div(data-toggle="modal" data-target="#avatar") 
           img(src="placeholder.webp")
-          p.flex-item here to upload an avatar
+          p.flex-item Click to upload an avatar
           //- boostrap modal       
         div.Title
           h2 #{userProfile.nickname}
@@ -16,13 +15,12 @@ block layout-content
           h3 Number of comments: #{userProfile.comments.length}
       div.Create
         h1 Create New Post
-        //- tooltip for category criteria
         br
         h2 Service: 
           input(type='text')
         h2 Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           input(type='text')
-        div.tooltip
+        //- tooltips for category criteria
         h2 <a href="#" data-toggle="tooltip" title="Was the driver wearing a mask? Did they leave things at your door without contact if you asked for it? Were things packaged properly? Was everything sealed?"><i class="fas fa-info-circle"></i></a>  Safety:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           include stars
         h2 <a href="#" data-toggle="tooltip" title="How was the food? Was it properly seasoned? Was it still the desired temperature when it got to you?"><i class="fas fa-info-circle"></i ></a>  Quality:&nbsp;&nbsp;&nbsp;&nbsp;
@@ -43,5 +41,18 @@ block layout-content
     include post-preview
     include post-preview
     include post-preview
+
+  div.modal(id="avatar" role="dialog")
+    div.modal-dialog
+      div.modal-content
+        div.modal-header
+          h4.modal-title Upload your avatar
+          button.close(type="button" class="close" data-dismiss="modal") &times;
+        div.modal-body
+          p Modal body
+          input(type='text')
+        div.modal-footer
+          button.btn.btn-default(type="button" data-dismiss="modal") Close
       
-  script(src='/javascript/stars.js')  
+  script(src='/javascript/stars.js')
+  script(src='/javascript/tooltips.js')
