@@ -31,7 +31,7 @@ async function signupFormHandler(event) {
                 setTimeout(() => { document.location.replace('/dashboard') }, 200);
             }
         } else {
-            alert(response.statusText);
+            alert("Duplicate username or e-mail, please try again.");
         }
     }
 }

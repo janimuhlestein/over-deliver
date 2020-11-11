@@ -28,5 +28,6 @@ html
         a(href="/login") Login
     div#root
       block layout-content
-    script(src="/javascript/logout.js")
+    if loggedIn
+      script(src="/javascript/logout.js")
 
