@@ -1,0 +1,37 @@
+extends layout
+
+block layout-content
+    form.search-form.input-form
+        h3 Search top ratings by Category
+        //- div.input-group.mt-3.mb-3
+        //-     div.input-group-prepend
+        //-         button.btn.btn-outline-secondary.dropdown-toggle(data-toggle="dropdown" type="button") Category
+        //-         div.dropdown-menu(aria-labelledby="dropdownMenuButton")
+        //-             a.dropdown-item(href="#") Safety
+        //-             a.dropdown-item(href="#") Quality
+        //-             a.dropdown-item(href="#") Accuracy
+        //-             a.dropdown-item(href="#") Speed
+        //-             a.dropdown-item(href="#") Value
+        //-             a.dropdown-item(href="#") Average
+        //-         input(type="text" class="form-control" placeholder="Provider/Leave blank for all")
+        div.dropdown
+            button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Category
+            div.dropdown-menu(aria-labelledby="dropdownMenuButton")
+                a.dropdown-item(href="#") Safety
+                a.dropdown-item(href="#") Quality
+                a.dropdown-item(href="#") Accuracy
+                a.dropdown-item(href="#") Speed
+                a.dropdown-item(href="#") Value
+        br
+        h3 Search by Provider
+        input(type="text" class="form-control" placeholder="Provider")
+        button Images
+        button Reviews
+        br
+        br
+        h3 Most recent Reviews for all providers
+        button Show
+
+//- show results below
+
+
