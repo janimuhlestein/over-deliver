@@ -17,7 +17,7 @@ router.get('/:id', (req,res)=>{
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'type'],
+        attributes: ['id'],
         include: {
             model: Review,
             attributes: ['id']
@@ -43,8 +43,7 @@ router.get('/:id', (req,res)=>{
 router.post('/', (req,res)=>{
     Vote.create({
         review_id: req.body.review_id,
-        user_id: req.body.user_id,
-        type: req.body.type
+        user_id: req.body.user_id
     })
     .then(dbVoteData=>{
         res.json(dbVoteData);

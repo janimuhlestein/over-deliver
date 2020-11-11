@@ -40,7 +40,7 @@ router.get('/provider/reviews', (req,res)=>{
 });
 
 //get the images for a provider
-router.get('/provider/images', (req,res)=>{
+/* router.get('/provider/images', (req,res)=>{
     var query = req.url.split('?');
   Provider.findAll({
       where: {
@@ -68,7 +68,7 @@ router.get('/provider/images', (req,res)=>{
       console.log(err);
       res.status(500).json(err);
   });
-});
+}); */
 
 //get most recent reviews (everything from two weeks)
 
