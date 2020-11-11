@@ -14,8 +14,8 @@ router.get('/', withAuth, (req, res) => {
         attributes: [
             'title',
             'text',
-            // [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
-            // [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id WHERE v.type = 1)'), 'upVotes']
+            [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
+            [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upVotes']
         ],
         include: [
             {
