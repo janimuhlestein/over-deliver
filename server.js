@@ -23,30 +23,6 @@ const sess = {
 app.use(session(sess));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-app.get("/", (req, res) => {
-    res.render("index", { title: "Home" });
-});
-
-app.get("/dashboard", (req, res) => {
-    res.render("dashboard", { title: "Dashboard", userProfile: { nickname: "William", reviews: "1, 2", upvotes: "23542", comments: "111111111" } });
-});
-
-app.get("/edit", (req, res) => {
-    res.render("edit", { title: "Edit Post" });
-});
-app.get("/view", (req, res) => {
-    res.render("view-post", { title: "View Post" });
-});
-app.get("/login", (req, res) => {
-    res.render("login", { title: "Login" });
-});
-app.get("/signup", (req, res) => {
-    res.render("signup", { title: "Sign-up" });
-});
-app.get("/search", (req, res) => {
-    res.render("search", { title: "Search" });
-});
-
 
 
 app.use(express.json());

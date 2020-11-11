@@ -134,12 +134,12 @@ router.delete('/:id', (req,res)=>{
 router.post('/login', (req,res)=>{
     User.findOne({
         where: {
-            email:req.body.email
+            username:req.body.username
         }
     })
     .then(dbUserData=>{
         if(!dbUserData) {
-            res.status(400).json({message: 'No user with that email address found!'});
+            res.status(400).json({message: 'No user with that username found!'});
             return;
         }
         const validPassword = dbUserData.checkPassword(req.body.password);
