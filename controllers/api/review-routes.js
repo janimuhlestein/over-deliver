@@ -4,21 +4,23 @@ const { Review, User, Provider, Rating, Comment, Vote, Image } = require('../../
 
 router.get('/', (req, res) => {
     Review.findAll({
-        attributes: ['title', 'text'],
+        attributes: [
+        'id',
+        'title', 
+        'text',
+        'service',
+        'average', 
+        'quality', 
+        'value', 
+        'speed', 
+         'safety', 
+        'accuracy'
+    ],
         order: [['created_at', 'DESC']],
         include: [
             {
                 model: User,
                 attributes: ['username'],
-                include: {
-                    model: Rating,
-                    attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy']
-                }
-            },
-            {
-                model: Provider,
-                attributes: ['name', 'type'],
-
             },
             {
                 model: Vote,
@@ -28,10 +30,6 @@ router.get('/', (req, res) => {
                     attributes: ['id', 'username']
                 }
             },
-            {
-                model: Image,
-                attributes: ['file', 'path']
-            }
         ]
     })
         .then(dbReviewData => {
@@ -48,20 +46,22 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['title', 'text'],
+        attributes: [
+        'id',
+        'title', 
+        'text',
+        'service',
+        'average', 
+        'quality', 
+        'value', 
+        'speed', 
+         'safety', 
+        'accuracy'
+        ],
         include: [
             {
                 model: User,
                 attributes: ['username']
-            },
-            {
-                model: Provider,
-                attributes: ['name', 'type'],
-                include: {
-                    model: Rating,
-                    attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy']
-                }
-
             },
             {
                 model: Comment,
@@ -74,10 +74,6 @@ router.get('/:id', (req, res) => {
                     model: User,
                     attributes: ['username']
                 }
-            },
-            {
-                model: Image,
-                attributes: ['id', 'file']
             }
         ]
     })
@@ -98,8 +94,14 @@ router.post('/', (req, res) => {
     Review.create({
         title: req.body.title,
         text: req.body.text,
-        service: req.body.provider,
-        user_id: req.session.user_id
+        service: req.body.service,
+        user_id: req.session.user_id,
+        average: req.body.average,
+        quality: req.body.quality,
+        value: req.body.value,
+        speed: req.body.speed,
+        safety: req.body.safety,
+        accuracy: req.body.accuracy
     })
         .then(dbReviewData => {
             res.json(dbReviewData);

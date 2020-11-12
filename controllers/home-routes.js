@@ -9,19 +9,15 @@ router.get('/', (req, res) => {
         attributes: [
             'title',
             'text',
+            'average', 
+            'quality', 
+            'value', 
+            'speed', 
+            'safety', 
+            'accuracy'
             [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
             [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upvotes']
-        ],
-        include: [{
-            model: Provider,
-            attributes: ['name']
-        },
-        {
-            model: Rating,
-            attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy']
-        }
         ]
-
     })
         .then(dbReviewData => {
             const reviews = dbReviewData.map(review => review.get({ plain: true }));
@@ -59,14 +55,16 @@ router.get("/search", (req, res) => {
                 'id',
                 'title',
                 'text',
+                'average', 
+                'quality', 
+                'value', 
+                'speed', 
+                'safety', 
+                'accuracy'
                 [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
                 [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upvotes']
             ],
             include: [
-                {
-                    model: Rating,
-                    attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy']
-                },
                 {
                     model: Comment,
                     attributes: ['id', 'text', 'review_id', 'user_id'],

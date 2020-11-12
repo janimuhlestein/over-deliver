@@ -7,11 +7,7 @@ router.get('/', (req,res)=>{
         order: [['created_at', 'DESC']],
         include: {
             model: Review,
-            attributes: ['title', 'text'],
-            include: {
-                model: Provider,
-                attributes: ['name']
-            }
+            attributes: ['title', 'text', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy']
         } 
     })
     .then(dbCommentData=>{
@@ -27,11 +23,7 @@ router.get('/:id', (req,res)=>{
         attributes: ['id', 'text'],
         include: {
             model: Review,
-            attributes: ['title', 'text'],
-            include: {
-                model: Provider,
-                attributes: ['name']
-            }
+            attributes: ['title', 'text', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         }
     })
     .then(dbCommentData=>{

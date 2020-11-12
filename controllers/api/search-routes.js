@@ -1,34 +1,26 @@
 const router = require('express').Router();
 const {Op} = require('sequelize');
-const {Comment, Rating, Review, Provider, Image} = require('../../models');
+const {Comment, Review} = require('../../models');
 
-//get reviews with specific provider
+//get reviews with specific service
 router.get('/provider/reviews', (req,res)=>{
     var query = req.url.split('?');
-    Provider.findOne({
+    Review.findOne({
         where: {
-            name: {
+            service: {
                 [Op.substring]: query[1]
             }
         },
-        attributes: ['id', 'name', 'type'],
+        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         include: {
-           model: Rating,
-           attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
-           include: {
-               model: Review,
-              attributes: ['id', 'title','text'],
-              include: {
-                  model: Comment,
-                  attributes: ['text']
-              }
-           }
+             model: Comment,
+             attributes: ['text']
        }
 
     })
     .then(dbProviderData=>{
         if(!dbProviderData) {
-           res.status(404).json({message: 'No provider found with that name'});
+           res.status(404).json({message: 'No service found with that name'});
            return;
         }
         res.json(dbProviderData);
@@ -83,6 +75,7 @@ router.get('/reviews/recent', (req,res)=>{
             created_at: 
             {[Op.gte]: subtractDays(14)}
         },
+        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']]
     })
     .then(dbReviewData=>{
@@ -95,27 +88,21 @@ router.get('/reviews/recent', (req,res)=>{
 });
 
 //get most recent reviews for a provider (last two weeks)
-router.get('/provider/recent', (req,res)=>{
+router.get('/service/recent', (req,res)=>{
     var query = req.url.split('?');
-    Provider.findAll({
+    Review.findAll({
         where: {
-            name: {
-                [Op.substring]: query[1]
-            },
-            order: [['created_at', 'DESC']]
-        },
-        include: {
-            model: Review,
-            where: {
-                created_at: {
+            service: {
+                [Op.substring]: query[1],
                 [Op.gte]: subtractDays(14)
-                }
-            }
+            },
+            attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+            order: [['created_at', 'DESC']]
         }
     })
     .then(dbProviderData=>{
         if(!dbProviderData) {
-            res.status(404).json({message: 'No reviews for that provider in the past two weeks.'});
+            res.status(404).json({message: 'No reviews for that service in the past two weeks.'});
             return;
         }
         res.json(dbProviderData);
@@ -129,21 +116,14 @@ router.get('/provider/recent', (req,res)=>{
 //search for all of a specific average rating
 router.get('/ratings',(req,res)=>{
     var query = req.url.split('?');
-    Rating.findAll({
+    Review.findAll({
         where: {
             average: {
                 [Op.lte]: query[1]
             }
         },
-        order: [['created_at', 'DESC']],
-        include: {
-                model: Review,
-                attributes: ['title', 'text'],
-                include: {
-                    model: Provider,
-                    attributes: ['name']
-                }
-        }
+        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['created_at', 'DESC']]
     })
     .then(dbRatingData=>{
         if(!dbRatingData) {
@@ -162,26 +142,18 @@ router.get('/ratings',(req,res)=>{
 router.get('/quality', (req,res)=>{
     var query = req.url.split('?');
    // console.log(option);
-    Rating.findAll({
+    Review.findAll({
         where:{
             quality: {
                 [Op.eq]: query[1]
             }
         },
+        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
         include:[ {
-            model: Review,
-            attributes: [
-                'title',
-                'text'
-            ],
             include:[ {
                 model: Comment,
                 attributes: ['text']
-            },
-            {
-                model: Provider,
-                attributes: ['name']
             }
         ]
         }
@@ -204,30 +176,19 @@ router.get('/quality', (req,res)=>{
 router.get('/value', (req,res)=>{
     var query = req.url.split('?');
     console.log(option);
-    Rating.findAll({
+    Review.findAll({
         where:{
             value: {
                 [Op.eq]: query[1]
             }
         },
+        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
         include:[ {
-            model: Review,
-            attributes: [
-                'title',
-                'text'
-            ],
-            include:[ {
-                model: Comment,
-                attributes: ['text']
-            },
-            {
-                model: Provider,
-                attributes: ['name']
+             model: Comment,
+            attributes: ['text']
             }
         ]
-        }
-    ]
     })
     .then(dbSearchData=>{
         if(!dbSearchData) {
@@ -246,29 +207,18 @@ router.get('/value', (req,res)=>{
 router.get('/accuracy', (req,res)=>{
     var query = req.url.split('?');
     console.log(option);
-    Rating.findAll({
+    Review.findAll({
         where:{
             accuracy: {
                 [Op.eq]: query[1]
             }
         },
+        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
-        include:[ {
-            model: Review,
-            attributes: [
-                'title',
-                'text'
-            ],
             include:[ {
                 model: Comment,
                 attributes: ['text']
-            },
-            {
-                model: Provider,
-                attributes: ['name']
             }
-        ]
-        }
     ]
     })
     .then(dbSearchData=>{
@@ -285,32 +235,21 @@ router.get('/accuracy', (req,res)=>{
 });
 
 //search by specific rating: packaging
-router.get('/packaging', (req,res)=>{
+router.get('/safety', (req,res)=>{
     var query = req.url.split('?');
-    Rating.findAll({
+    Review.findAll({
         where:{
             packaging: {
                 [Op.eq]: query[1]
             }
         },
+        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
-        include:[ {
-            model: Review,
-            attributes: [
-                'title',
-                'text'
-            ],
             include:[ {
                 model: Comment,
                 attributes: ['text']
-            },
-            {
-                model: Provider,
-                attributes: ['name']
             }
         ]
-        }
-    ]
     })
     .then(dbSearchData=>{
         if(!dbSearchData) {
@@ -328,30 +267,19 @@ router.get('/packaging', (req,res)=>{
 //search by specific rating: speed
 router.get('/speed', (req,res)=>{
     var query = req.url.split('?');
-    Rating.findAll({
+    Review.findAll({
         where:{
             speed: {
                 [Op.eq]: query[1]
             }
         },
+        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
-        include:[ {
-            model: Review,
-            attributes: [
-                'title',
-                'text'
-            ],
             include:[ {
                 model: Comment,
                 attributes: ['text']
-            },
-            {
-                model: Provider,
-                attributes: ['name']
             }
         ]
-        }
-    ]
     })
     .then(dbSearchData=>{
         if(!dbSearchData) {

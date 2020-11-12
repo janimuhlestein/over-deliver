@@ -19,44 +19,34 @@ router.get('/:id', (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
         where: {
-            id: req.params.id
+            id: req.session.user_id
         },
         include: [
             {
                 model: Review,
-                attributes: ['id', 'title', 'text', 'provider_id'],
-                include: {
-                    model: Provider,
-                    attributes: ['name', 'type'],
-                    include: {
-                        model: Rating,
-                        attributes: ['id', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy']
-                    }
-                }
-            },
-            {
+                attributes: [
+                    'id', 
+                    'title', 
+                    'text', 
+                    'service',
+                    'average', 
+                    'quality', 
+                    'value', 
+                    'speed', 
+                     'safety', 
+                    'accuracy'],
+                },
+                {
                 model: Comment,
                 attributes: ['id', 'text', 'created_at'],
                 include: {
                     model: Review,
-                    attributes: ['title']
+                    attributes: ['title', 'text']
                 }
-            },
-            {
+                },
+                {
                 model: Vote,
-                attributes: ['id', 'type'],
-                include: {
-                    model: Review,
-                    attributes: ['id']
-                }
-            },
-            {
-                model: Avatar,
-                attributes: ['id', 'file', 'path']
-            },
-            {
-                model: Image,
-                attributes: ['id', 'file', 'path'],
+                attributes: ['id'],
                 include: {
                     model: Review,
                     attributes: ['id']
