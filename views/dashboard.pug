@@ -41,12 +41,10 @@ block layout-content
           h2 Review Content:
             textarea(type='input' id="review-text")
           button.btn(id="create" type="submit" onClick="newFormHandler()") Create
-  div.post-row.wrap
-    include post-preview
-    include post-preview
-    include post-preview
-    include post-preview
-    include post-preview
+  if reviews.length
+    div.post-row.wrap
+      each review in reviews
+        include post-preview
 
   //- div.modal(id="avatar" role="dialog")
   //-   div.modal-dialog
