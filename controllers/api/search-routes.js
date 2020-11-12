@@ -1,29 +1,39 @@
 const router = require('express').Router();
 const {Op} = require('sequelize');
+const sequelize = require('../../config/connection');
 const {Comment, Review} = require('../../models');
 
 //get reviews with specific service
-router.get('/service/reviews', (req,res)=>{
-    var query = req.url.split('?');
+router.get('/reviews/:service', (req,res)=>{
     Review.findOne({
         where: {
-            service: {
-                [Op.substring]: query[1]
-            }
+            service: req.params.service
         },
-        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: [
+        'id', 
+        'title',
+        'text',
+        'service', 
+        'average', 
+        'quality', 
+        'value', 
+        'speed', 
+        'safety', 
+        'accuracy',
+        [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upVotes']
+    ],
         include: {
              model: Comment,
              attributes: ['text']
        }
 
     })
-    .then(dbProviderData=>{
-        if(!dbProviderData) {
+    .then(dbServiceData=>{
+        if(!dbServiceData) {
            res.status(404).json({message: 'No service found with that name'});
            return;
         }
-        res.json(dbProviderData);
+        res.json(dbServiceData);
     })
     .catch(err=>{
         console.log(err);
@@ -39,13 +49,30 @@ var subtractDays = (days)=>{
     return currentDate.setTime(currentDate.getTime() - (days*24*60*60*1000));
 };
 
-router.get('/reviews/recent', (req,res)=>{
+router.get('/recent', (req,res)=>{
     Review.findAll({
-        where: {
-            created_at: 
-            {[Op.gte]: subtractDays(14)}
+       where: {
+            created_at:  {
+                [Op.gte]: subtractDays(14)
+            }
+        }, 
+        attributes: [
+            'id', 
+            'title',
+            'text',
+            'service', 
+            'average', 
+            'quality', 
+            'value', 
+            'speed', 
+            'safety', 
+            'accuracy',
+            [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upVotes']
+    ],
+        include: {
+            model: Comment,
+            attributes: ['text']
         },
-        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']]
     })
     .then(dbReviewData=>{
@@ -57,25 +84,40 @@ router.get('/reviews/recent', (req,res)=>{
     });
 });
 
-//get most recent reviews for a provider (last two weeks)
-router.get('/service/recent', (req,res)=>{
-    var query = req.url.split('?');
+//get most recent reviews for a service (last two weeks)
+router.get('/service/recent/:service', (req,res)=>{
     Review.findAll({
         where: {
-            service: {
-                [Op.substring]: query[1],
+            service: req.params.service,
+            created_at: {
                 [Op.gte]: subtractDays(14)
+            }
+        },
+            attributes: [
+                'id', 
+                'title',
+                'text', 
+                'service',  
+                'average', 
+                'quality', 
+                'value', 
+                'speed', 
+                'safety', 
+                'accuracy',
+                [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upVotes']
+            ],
+            include: {
+                model: Comment,
+                attributes: ['text']
             },
-            attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
             order: [['created_at', 'DESC']]
-        }
     })
-    .then(dbProviderData=>{
-        if(!dbProviderData) {
+    .then(dbServiceData=>{
+        if(!dbServiceData) {
             res.status(404).json({message: 'No reviews for that service in the past two weeks.'});
             return;
         }
-        res.json(dbProviderData);
+        res.json(dbServiceData);
     })
     .catch(err=>{
         console.log(err);
@@ -84,15 +126,12 @@ router.get('/service/recent', (req,res)=>{
 });
 
 //search for all of a specific average rating
-router.get('/ratings',(req,res)=>{
-    var query = req.url.split('?');
+router.get('/average/:average',(req,res)=>{
     Review.findAll({
         where: {
-            average: {
-                [Op.lte]: query[1]
-            }
+            average: req.params.average
         },
-        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']]
     })
     .then(dbRatingData=>{
@@ -109,25 +148,13 @@ router.get('/ratings',(req,res)=>{
 });
 
 //search by specific rating: quality
-router.get('/quality', (req,res)=>{
-    var query = req.url.split('?');
-   // console.log(option);
+router.get('/quality/:quality', (req,res)=>{
     Review.findAll({
         where:{
-            quality: {
-                [Op.eq]: query[1]
-            }
+            quality: req.params.quality
         },
-        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
-        order: [['created_at', 'DESC']],
-        include:[ {
-            include:[ {
-                model: Comment,
-                attributes: ['text']
-            }
-        ]
-        }
-    ]
+        attributes: ['id', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['created_at', 'DESC']]
     })
     .then(dbSearchData=>{
         if(!dbSearchData) {
@@ -143,22 +170,13 @@ router.get('/quality', (req,res)=>{
 });
 
 //search by specific rating: value
-router.get('/value', (req,res)=>{
-    var query = req.url.split('?');
-    console.log(option);
+router.get('/value/:value', (req,res)=>{
     Review.findAll({
         where:{
-            value: {
-                [Op.eq]: query[1]
-            }
+            value: req.params.value
         },
-        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id','service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
-        include:[ {
-             model: Comment,
-            attributes: ['text']
-            }
-        ]
     })
     .then(dbSearchData=>{
         if(!dbSearchData) {
@@ -174,22 +192,13 @@ router.get('/value', (req,res)=>{
 });
 
 //search by specific rating: accuracy
-router.get('/accuracy', (req,res)=>{
-    var query = req.url.split('?');
-    console.log(option);
+router.get('/accuracy/:accuracy', (req,res)=>{
     Review.findAll({
         where:{
-            accuracy: {
-                [Op.eq]: query[1]
-            }
+            accuracy: req.params.accuracy
         },
-        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
-            include:[ {
-                model: Comment,
-                attributes: ['text']
-            }
-    ]
     })
     .then(dbSearchData=>{
         if(!dbSearchData) {
@@ -205,21 +214,13 @@ router.get('/accuracy', (req,res)=>{
 });
 
 //search by specific rating: packaging
-router.get('/safety', (req,res)=>{
-    var query = req.url.split('?');
+router.get('/safety/:safety', (req,res)=>{
     Review.findAll({
-        where:{
-            packaging: {
-                [Op.eq]: query[1]
-            }
+        where: {
+            safety: req.params.safety
         },
-        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
-            include:[ {
-                model: Comment,
-                attributes: ['text']
-            }
-        ]
     })
     .then(dbSearchData=>{
         if(!dbSearchData) {
@@ -235,21 +236,13 @@ router.get('/safety', (req,res)=>{
 });
 
 //search by specific rating: speed
-router.get('/speed', (req,res)=>{
-    var query = req.url.split('?');
+router.get('/speed/:speed', (req,res)=>{
     Review.findAll({
         where:{
-            speed: {
-                [Op.eq]: query[1]
-            }
+            speed: req.params.speed
         },
-        attributes: ['id', 'name', 'type', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
-            include:[ {
-                model: Comment,
-                attributes: ['text']
-            }
-        ]
     })
     .then(dbSearchData=>{
         if(!dbSearchData) {
