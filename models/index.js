@@ -30,4 +30,4 @@ User.hasMany(Image);
 Image.belongsTo(Review);
 Review.hasMany(Image);
 
-module.exports = { User, Provider, Review, Rating, Comment, Vote, Avatar, Image};
+module.exports = { User, Provider, Review, Rating, Comment, Vote, Avatar, Image };
