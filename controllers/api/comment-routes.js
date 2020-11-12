@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Comment, Review, Provider} = require('../../models');
+const {Comment, Review} = require('../../models');
 
 router.get('/', (req,res)=>{
     Comment.findAll({
@@ -42,7 +42,7 @@ router.get('/:id', (req,res)=>{
 router.post('/', (req,res)=>{
     Comment.create({
         review_id: req.body.review_id,
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
         text: req.body.text
     })
     .then(dbCommentData=>{

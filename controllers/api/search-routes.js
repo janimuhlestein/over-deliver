@@ -3,7 +3,7 @@ const {Op} = require('sequelize');
 const {Comment, Review} = require('../../models');
 
 //get reviews with specific service
-router.get('/provider/reviews', (req,res)=>{
+router.get('/service/reviews', (req,res)=>{
     var query = req.url.split('?');
     Review.findOne({
         where: {
@@ -31,36 +31,6 @@ router.get('/provider/reviews', (req,res)=>{
     });
 });
 
-//get the images for a provider
-/* router.get('/provider/images', (req,res)=>{
-    var query = req.url.split('?');
-  Provider.findAll({
-      where: {
-          name: {
-          [Op.substring]: query[1]
-          }
-      },
-       include: {
-          model: Review,
-          attributes: ['id'],
-          include: {
-              model: Image,
-              attributes: ['file', 'path']
-          }
-      } 
-  }) 
-  .then(dbProviderData=>{
-      if(!dbProviderData){
-          res.status(404).json({message: 'no provider found with that name.'});
-          return;
-      }
-      res.json(dbProviderData);
-  })
-  .catch(err=>{
-      console.log(err);
-      res.status(500).json(err);
-  });
-}); */
 
 //get most recent reviews (everything from two weeks)
 

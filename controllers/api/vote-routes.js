@@ -43,7 +43,7 @@ router.get('/:id', (req,res)=>{
 router.post('/', (req,res)=>{
     Vote.create({
         review_id: req.body.review_id,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
     .then(dbVoteData=>{
         res.json(dbVoteData);

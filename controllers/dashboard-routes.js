@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const withAuth = require('../utils/auth');
-const { User, Review, Comment, Vote, Rating, Provider } = require('../models');
-const { resourceLimits } = require('worker_threads');
+const { User, Review, Comment, Vote } = require('../models');
+//const { resourceLimits } = require('worker_threads');
 
 //get all of their reviews, plus numbers of comments and votes
 router.get('/', withAuth, (req, res) => {
@@ -19,7 +19,7 @@ router.get('/', withAuth, (req, res) => {
             'value', 
             'speed', 
             'safety', 
-            'accuracy'
+            'accuracy',
             [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
             [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upVotes']
         ]
@@ -45,7 +45,8 @@ router.get('/edit/:id', withAuth, (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 
+        attributes: [
+        'id', 
         'title', 
         'text',
         'average', 
@@ -54,7 +55,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
         'speed', 
          'safety', 
         'accuracy'
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE review.id = vote.review_id)'), 'upVote_count']],
+        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE review.id = vote.review_id)'), 'upVote_count']],
         include: [
             {
                 model: Comment,

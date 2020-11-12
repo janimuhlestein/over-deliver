@@ -1,7 +1,7 @@
 const router = require('express').Router();
 //const { rmdirSync } = require('fs');
 const sequelize = require('../config/connection');
-const { User, Rating, Review, Comment, Provider } = require('../models');
+const { User, Review, Comment } = require('../models');
 
 router.get('/', (req, res) => {
     Review.findAll({
@@ -9,13 +9,14 @@ router.get('/', (req, res) => {
         attributes: [
             'title',
             'text',
+            'service',
             'average', 
             'quality', 
             'value', 
             'speed', 
             'safety', 
-            'accuracy'
-            [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
+            'accuracy', 
+           [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
             [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upvotes']
         ]
     })
@@ -27,7 +28,6 @@ router.get('/', (req, res) => {
                 reviews,
                 loggedIn: req.session.loggedIn
             })
-
         })
         .catch(err => {
             console.log(err);
