@@ -1,7 +1,7 @@
-const {Model, DataTypes} = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Rating extends Model {}
+class Rating extends Model { }
 
 Rating.init({
     id: {
@@ -32,7 +32,7 @@ Rating.init({
     },
     safety: {
         type: DataTypes.INTEGER,
-        allowNull:false
+        allowNull: false
     },
     user_id: {
         type: DataTypes.INTEGER,
@@ -42,21 +42,17 @@ Rating.init({
             key: 'id'
         }
     },
-    provider_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'provider',
-            key: 'id'
-        }
+    provider: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 },
-{
-    sequelize,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'rating'
+    {
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'rating'
 
-});
+    });
 
 module.exports = Rating;

@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
                 reviews,
                 loggedIn: req.session.loggedIn
             })
-       
+
         })
         .catch(err => {
             console.log(err);
@@ -98,13 +98,6 @@ router.get("/search", (req, res) => {
 
 router.get('/signup', (req, res) => {
     res.render('signup')
-        .then(dbSignupData => {
-            res.json(dbSignupData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
 });
 
 
