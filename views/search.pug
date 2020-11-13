@@ -17,20 +17,22 @@ block layout-content
         div.dropdown
             button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Category
             div.dropdown-menu(aria-labelledby="dropdownMenuButton")
-                a.dropdown-item(href="#") Safety
-                a.dropdown-item(href="#") Quality
-                a.dropdown-item(href="#") Accuracy
-                a.dropdown-item(href="#") Speed
-                a.dropdown-item(href="#") Value
+                a.dropdown-item(id="safety" href="#") Safety
+                a.dropdown-item(id="quality" href="#") Quality
+                a.dropdown-item(id="accuracy" href="#") Accuracy
+                a.dropdown-item(id="speed" href="#") Speed
+                a.dropdown-item(id="value" href="#") Value
+                a.dropdown-item(id="average" href="#") Average
         br
         h3 Search by Provider
-        input(type="text" class="form-control" placeholder="Provider")
+        input(type="text" id="provider" class="form-control" placeholder="Provider")
         button Images
-        button Reviews
+        button(id="reviews") Reviews
         br
         br
         h3 Most recent Reviews for all providers
-        button Show
+        button(id="show") Show
+        script(src='/javascript/search.js')
 
 //- show results below
 

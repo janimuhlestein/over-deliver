@@ -131,7 +131,7 @@ router.get('/average/:average',(req,res)=>{
         where: {
             average: req.params.average
         },
-        attributes: ['id', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']]
     })
     .then(dbRatingData=>{
@@ -153,7 +153,7 @@ router.get('/quality/:quality', (req,res)=>{
         where:{
             quality: req.params.quality
         },
-        attributes: ['id', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id', 'service', 'average','quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']]
     })
     .then(dbSearchData=>{
@@ -175,7 +175,7 @@ router.get('/value/:value', (req,res)=>{
         where:{
             value: req.params.value
         },
-        attributes: ['id','service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id','service', 'average','quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
     })
     .then(dbSearchData=>{
@@ -219,7 +219,7 @@ router.get('/safety/:safety', (req,res)=>{
         where: {
             safety: req.params.safety
         },
-        attributes: ['id', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
     })
     .then(dbSearchData=>{
@@ -241,12 +241,208 @@ router.get('/speed/:speed', (req,res)=>{
         where:{
             speed: req.params.speed
         },
-        attributes: ['id', 'service', 'average', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
     })
     .then(dbSearchData=>{
         if(!dbSearchData) {
             res.status(404).json({messsage: 'No ratings found that match that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+router.get('/average/:average',(req,res)=>{
+    Review.findAll({
+        where: {
+            average: req.params.average
+        },
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['created_at', 'DESC']]
+    })
+    .then(dbRatingData=>{
+        if(!dbRatingData) {
+            res.status(404).json({message: 'No ratings found with that average'});
+            return;
+        }
+        res.json(dbRatingData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+//search by specific rating: quality
+router.get('/quality/:quality', (req,res)=>{
+    Review.findAll({
+        where:{
+            quality: req.params.quality
+        },
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['created_at', 'DESC']]
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found that match that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+//search by specific rating: value
+router.get('/value/:value', (req,res)=>{
+    Review.findAll({
+        where:{
+            value: req.params.value
+        },
+        attributes: ['id','service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['created_at', 'DESC']],
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found that match that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+//search by specific rating: accuracy
+router.get('/accuracy/:accuracy', (req,res)=>{
+    Review.findAll({
+        where:{
+            accuracy: req.params.accuracy
+        },
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['created_at', 'DESC']],
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found that match that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+//search by specific category
+router.get('/average', (req,res)=>{
+    Review.findAll({
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['average', 'DESC']],
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found for that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+router.get('/quality', (req,res)=>{
+    Review.findAll({
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['quality', 'DESC']],
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found for that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+router.get('/value', (req,res)=>{
+    Review.findAll({
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['value', 'DESC']],
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found for that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+router.get('/speed', (req,res)=>{
+    Review.findAll({
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['speed', 'DESC']],
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found for that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+router.get('/safety', (req,res)=>{
+    Review.findAll({
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['safety', 'DESC']],
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found for that criteria'});
+            return;
+        }
+        res.json(dbSearchData);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err);
+});
+});
+
+router.get('/accuracy', (req,res)=>{
+    Review.findAll({
+        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        order: [['accuracy', 'DESC']],
+    })
+    .then(dbSearchData=>{
+        if(!dbSearchData) {
+            res.status(404).json({messsage: 'No ratings found for that criteria'});
             return;
         }
         res.json(dbSearchData);
