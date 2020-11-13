@@ -2,8 +2,27 @@ extends layout
 
 block layout-content
   div.View
-      div.Title
-        h3 Finding out what
-        h1 Deliveries you want made      
-
-        //- Don't work too much on this - Sarah's got it
+    div(class="container")
+      div(class="row")
+        div(class="col-4")
+          img(src="./assets/images/Burger.png" class="img-fluid" width="100%")
+          h3(class="titles") TRENDING
+        div(class="col-4")
+          img(src="./assets/images/Smoothie_Bowl.png" class="img-fluid")  
+          h3(class="titles") TOP RATED
+        div(class="col-4")
+          img(src="./assets/images/Tacos.png" class="img-fluid")  
+          h3(class="titles") Featured  
+    hr
+    div(class="container")
+      div(class="row")
+        div(class="col-7")
+          img(src="./assets/images/about.png")
+        dic(class="col-5")
+          div(class="about")
+            p(class="h2" id="about") ABOUT
+          p(class="lead") With an increase in delivery options, including grocery delivery, we wanted a place to talk about the best delivery options out there, share the yummy food you're getting delivered, and talk about new or unique restaurants that you can experience all in the convenience of your own home!
+          h4
+            if loggedIn
+            else
+              a(class="btn" id="signupBtn" href="/signup") SIGN UP
