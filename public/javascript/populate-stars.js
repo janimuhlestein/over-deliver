@@ -1,5 +1,4 @@
-function bork() {
-    let average = document.querySelector('.hidden').innerHTML.trim()
+function bork(average) {
     let two = document.querySelector('.two')
     let three = document.querySelector('.three')
     let four = document.querySelector('.four')

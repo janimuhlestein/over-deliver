@@ -20,9 +20,16 @@ router.get('/', withAuth, (req, res) => {
             'value',
             'speed',
             'safety',
+            'id',
             'accuracy',
             [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
             [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upVotes']
+        ],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
         ]
     })
         .then(dbReviewData => {
@@ -32,7 +39,7 @@ router.get('/', withAuth, (req, res) => {
             res.render("dashboard", {
                 title: "Dashboard",
                 reviews,
-                loggedIn: true
+                loggedIn: req.session.loggedIn
             })
         })
         .catch(err => {
