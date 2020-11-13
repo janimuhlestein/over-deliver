@@ -403,3 +403,6 @@ footer {
 .login-body{
   background-color: #80A860;
 }
+.hidden {
+  display: none;
+}

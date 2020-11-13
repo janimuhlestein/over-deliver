@@ -14,14 +14,22 @@ router.get('/', withAuth, (req, res) => {
         attributes: [
             'title',
             'text',
-            'average', 
-            'quality', 
-            'value', 
-            'speed', 
-            'safety', 
+            'average',
+            'quality',
+            'service',
+            'value',
+            'speed',
+            'safety',
+            'id',
             'accuracy',
             [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
             [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upVotes']
+        ],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
         ]
     })
         .then(dbReviewData => {
@@ -31,7 +39,7 @@ router.get('/', withAuth, (req, res) => {
             res.render("dashboard", {
                 title: "Dashboard",
                 reviews,
-                loggedIn: true
+                loggedIn: req.session.loggedIn
             })
         })
         .catch(err => {
@@ -46,16 +54,16 @@ router.get('/edit/:id', withAuth, (req, res) => {
             id: req.params.id
         },
         attributes: [
-        'id', 
-        'title', 
-        'text',
-        'average', 
-        'quality', 
-        'value', 
-        'speed', 
-         'safety', 
-        'accuracy'
-        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE review.id = vote.review_id)'), 'upVote_count']],
+            'id',
+            'title',
+            'text',
+            'average',
+            'quality',
+            'value',
+            'speed',
+            'safety',
+            'accuracy'
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE review.id = vote.review_id)'), 'upVote_count']],
         include: [
             {
                 model: Comment,

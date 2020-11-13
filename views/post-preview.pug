@@ -1,22 +1,14 @@
+- var average = review.average
 div.Post
-  div
-    img(src="placeholder.webp")
-    
   div.Title
-      h2 Service: 
-      h2.neg-bottom Title:
-      h2 Stars:
-        include stars
-      //- overall only for preview. 
-      h2 Content:
-  div
-    div
-      p Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime debitis officiis placeat sunt perferendis fugit consequuntur atque praesentium unde cupiditate perspiciatis, inventore id itaque nobis doloremque iusto voluptatem laudantium corrupti.
-    //- only show partial with character limit.
-    div.right-text
-      p Number of upvotes: upvotes
-      p Number of comments: comments
-      button Comment
-      button Edit
-      
+    h2 Service: #{review.service}
+    h2 Title: #{review.title}
+    h2 Average Rating: #{average}
+    //- overall only for preview. 
+    h2 Content:
+    p #{review.text}
+    button Comment
+    button Edit
+    //- button.vote-post-button(type="submit" onClick='voteFormHandler(' + review.id + ', ' + user.id + ')') Vote
+//- script(src="/javascript/vote.js")
     

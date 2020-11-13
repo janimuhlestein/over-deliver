@@ -1,8 +1,7 @@
-async function newFormHandler() {
-
+async function newFormHandler(click) {
+    click.preventDefault();
     const title = document.querySelector('#review-title').value;
-    const provider = document.querySelector("#service").value;
-    const service = provider
+    const service = document.querySelector("#service").value;
     const text = document.querySelector("#review-text").value;
     const safety = document.querySelector("#safety").title;
     const quality = document.querySelector("#quality").title;
@@ -11,10 +10,12 @@ async function newFormHandler() {
     const value = document.querySelector("#value").title;
     const average = ((parseInt(safety) + parseInt(quality) + parseInt(accuracy) + parseInt(speed) + parseInt(value)) / 5).toFixed(2);
 
-    const response = await fetch(`/api/ratings`, {
+    const response = await fetch(`/api/reviews`, {
         method: 'POST',
         body: JSON.stringify({
-            provider,
+            title,
+            text,
+            service,
             average,
             quality,
             value,
@@ -27,16 +28,7 @@ async function newFormHandler() {
         }
     });
 
-    const review = await fetch(`/api/reviews`, {
-        method: 'POST',
-        body: JSON.stringify({
-            title,
-            text,
-            service
-        })
-    })
-
-    if ((response.ok) && (review.ok)) {
+    if (response.ok) {
         document.location.replace('/dashboard');
     } else {
         alert(response.statusText);

@@ -5,22 +5,22 @@ const { Review, User, Comment, Vote } = require('../../models');
 router.get('/', (req, res) => {
     Review.findAll({
         attributes: [
-        'id',
-        'title', 
-        'text',
-        'service',
-        'average', 
-        'quality', 
-        'value', 
-        'speed', 
-         'safety', 
-        'accuracy'
-    ],
+            'id',
+            'title',
+            'text',
+            'service',
+            'average',
+            'quality',
+            'value',
+            'speed',
+            'safety',
+            'accuracy'
+        ],
         order: [['created_at', 'DESC']],
         include: [
             {
                 model: User,
-                attributes: ['username'],
+                attributes: ['username', 'user_id'],
             },
             {
                 model: Comment,
@@ -55,16 +55,16 @@ router.get('/:id', (req, res) => {
             id: req.params.id
         },
         attributes: [
-        'id',
-        'title', 
-        'text',
-        'service',
-        'average', 
-        'quality', 
-        'value', 
-        'speed', 
-         'safety', 
-        'accuracy'
+            'id',
+            'title',
+            'text',
+            'service',
+            'average',
+            'quality',
+            'value',
+            'speed',
+            'safety',
+            'accuracy'
         ],
         include: [
             {
