@@ -1,4 +1,4 @@
-function bork(average) {
+function stars(average) {
     let two = document.querySelector('.two')
     let three = document.querySelector('.three')
     let four = document.querySelector('.four')
@@ -18,4 +18,4 @@ function bork(average) {
     }
 }
 
-bork();
+stars();

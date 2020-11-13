@@ -33,9 +33,7 @@ router.get('/', withAuth, (req, res) => {
         ]
     })
         .then(dbReviewData => {
-            console.log(dbReviewData);
             const reviews = dbReviewData.map(review => review.get({ plain: true }));
-            console.log(reviews);
             res.render("dashboard", {
                 title: "Dashboard",
                 reviews,

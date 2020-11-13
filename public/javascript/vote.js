@@ -1,11 +1,12 @@
-async function voteFormHandler(review_id, user_id) {
-    console.log(review_id, user_id)
+async function voteFormHandler(review_id) {
     const response = await fetch(`/api/votes/`, {
         method: 'POST',
         body: JSON.stringify({
-            review_id,
-            user_id
-        })
+            review_id
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     });
     if (response.ok) {
         document.location.replace('/dashboard/');
@@ -13,5 +14,3 @@ async function voteFormHandler(review_id, user_id) {
         alert(response.statusText);
     }
 }
-
-document.querySelector('.vote-post-button').addEventListener('click', voteFormHandler);
