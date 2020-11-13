@@ -1,0 +1,8 @@
+extends layout
+
+block layout-content
+    h1 SERVICE TITLE
+    if reviews.length
+        div.post-row.wrap
+            each review in reviews
+                include post-preview

@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Review, User } = require('../models')
+const {User, Review} = require('../models')
 
-//display search page
+//display trending page
 router.get('/', (req,res)=>{
     Review.findAll({
         limit: 20 ,
-        order: [['average', 'DESC']],
+        order: [['average', 'DESC'],['created_at', 'DESC']],
         attributes: [
             'title',
             'text',
@@ -30,8 +30,8 @@ router.get('/', (req,res)=>{
     })
         .then(dbReviewData => {
             const reviews = dbReviewData.map(review => review.get({ plain: true }));
-            res.render("search", {
-                title: "Search",
+            res.render("trending", {
+                title: "Trending",
                 reviews,
                 loggedIn: req.session.loggedIn
             })
