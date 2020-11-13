@@ -1,13 +1,15 @@
 extends layout
 
 block layout-content
-    form.login-form.input-form
-        h1 Login
-        h2 Username:
+    form(class="login-form")
+        div(class="login-title") LOG-IN
+        div(class="login-body")
+            div(class="login-uname") USERNAME:
             input(type='text' id="username-login")
-        h2 Password:
+            div(class="login-pword") PASSWORD:
             input(type='text' id="password-login")
-        button(type="submit") Login
+            br
+            button(type="submit" class="login-btn") LOG IN
     script(src="/javascript/login.js")
 
 
