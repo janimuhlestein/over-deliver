@@ -66,4 +66,47 @@ accuracy.addEventListener('click', function () {
     categorySearchHandler(event, category);
 });
 
+var provider = document.querySelector('#provider');
+var reviews = document.querySelector("#reviews");
+var service;
 
+async function providerSearchHandler(event, service) {
+    event.preventDefault();
+    var searchURL = '/api/search/reviews/' + service;
+    const response = await fetch(searchURL, {
+        method: 'GET'
+    });
+    if (response.ok){
+        response.json().then(function(data){
+             console.log(data);
+         });
+        
+     } else {
+         console.log(response.statusText);
+         alert(response.statusText);
+     };
+};
+
+reviews.addEventListener('click', function (){
+    var service = $('#provider').val().trim();
+    providerSearchHandler(event, service);
+});
+
+var show = document.querySelector("#show");
+async function allReviewsSearchHandler(event) {
+    event.preventDefault();
+    var searchURL = '/api/reviews';
+    const response = await fetch(searchURL,{
+        method: 'GET'
+    });
+    if (response.ok){
+        response.json().then(function(data){
+             console.log(data);
+         });
+        
+     } else {
+         console.log(response.statusText);
+         alert(response.statusText);
+     };
+};
+show.addEventListener('click', allReviewsSearchHandler);
