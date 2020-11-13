@@ -61,6 +61,8 @@ footer {
     text-align: center;
     color: white;
     padding: 70px;
+    position: absolute;
+    bottom: 0;
 }
 
 .footer {

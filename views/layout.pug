@@ -12,22 +12,39 @@ html
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous")
     link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous")
     link(rel="stylesheet" href="/style.css")
+    link(rel="styleshhet" href="/assets/css/style.css")
     
       
 
   body
-    nav.Banner
-      h1 Over-Deliver
-      a(href="/") Homepage
-      a(href="/dashboard") Dashboard
-      a(href="/search") Search
-      if loggedIn
-        button.btn-no-style(id="logout" class="btn-no-style") Logout
-      else
-        a(href="/signup") Sign-up
-        a(href="/login") Login
-    div#root
-      block layout-content
+    div(id="page-container")
+      div(id="content-wrap")
+        div(class="container-fluid")
+          img(src='./assets/images/1_Overdeliver.png' class="img-fluid mx-auto")
+        
+        nav(class='navbar navbar-expand-lg' style="background-color: #80A860")
+          div(class="collapse navbar-collapse justify-content-end")
+            ul(class="navbar-nav")
+              li(class="nav-item active")
+                a(class="nav-link navbar-brand" href="/" style="color: white") HOME
+              li(class="nav-item")
+                a(class="nav-link navbar-brand" href="/dashboard" style="color: white") DASHBOARD
+              //- li(class="nav-item")
+              //-   a(class="nav-link navbar-brand" href="/" style="color: white") SEARCH
+              if loggedIn
+                li(class="nav-item")
+                  button.btn(id="logout" class="btn") LOG OUT
+              else
+                li(class="nav-item")
+                  a(class="btn" id="signupBtn" href="/signup" style="color: white") SIGN-UP
+                li(class="nav-item")
+                  a(class="btn" id="loginBtn" href="/login") LOG IN    
+        div#root
+          block layout-content
+    
+    footer
+      div(class="footer") &copy; 2020 OverDeliver
+
     if loggedIn
       script(src="/javascript/logout.js")
 
