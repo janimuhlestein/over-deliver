@@ -406,3 +406,8 @@ footer {
 .hidden {
   display: none;
 }
+
+.stars {
+  font-size: 30px;
+  color: gold;
+}

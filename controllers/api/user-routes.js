@@ -16,7 +16,27 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/:id', (req, res) => {
+    router.get('/:id', (req, res) => {
+    var voteCount;
+    var commentCount;
+    Comment.count({
+        where: {
+            user_id: req.session.user_id
+        }
+    })
+    .then(count=>{
+        commentCount = count;
+    });
+
+    Vote.count({
+        where: {
+            user_id: req.session.user_id
+        },
+    })
+    .then(count=>{
+        voteCount = count;
+    });
+
     User.findOne({
         attributes: { exclude: ['password'] },
         where: {
@@ -60,7 +80,7 @@ router.get('/:id', (req, res) => {
                 res.status(404).json({ message: 'No user found with this id' });
                 return;
             }
-            res.json(dbUserData);
+            res.json({dbUserData, voteCount, commentCount});
         })
         .catch(err => {
             console.log(err);
