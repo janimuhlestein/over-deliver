@@ -1,3 +1,5 @@
+//const { debug } = require("console");
+
 var speed = document.querySelector("#speed");
 var average = document.querySelector('#average');
 var quality = document.querySelector('#quality');
@@ -8,28 +10,246 @@ var results = document.querySelector('#results');
 var category;
 
 displayResults = (data)=>{
-    console.log("got to display");
-    console.log(data);
+    console.log(data.length);
+   // debugger;
+   if(data.length>0){
     for(let i = 0; i<data.length; i++){
-        var title = document.createElement('p');
+        //get data and create the elements
+        var service = document.createElement('p');
+         service.textContent = data[i].service;
+         results.appendChild(service);
+         var title = document.createElement('p');
          title.textContent = data[i].title;
          results.appendChild(title);
          var text = document.createElement('p');
-         text.textContent = data[i].text;
+         text.textContent=data[i].text;
          results.appendChild(text);
+         var average = document.createElement('p');
+         average.textContent= 'Average: ';
+         var quality = document.createElement('p');
+         quality.textContent = 'Quality: ';
+         var value = document.createElement('p');
+         value.textContent = 'Value: ';
+         var speed = document.createElement('p');
+         speed.textContent = 'Speed: ';
+         var safety = document.createElement('p');
+         safety.textContent = 'Safety: ';
+         var accuracy = document.createElement('p');
+         accuracy.textContent = 'Accuracy: ';
+         //create the stars
+         //average
+        var num = parseInt(data[i].average);
+        var noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             average.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            average.appendChild(nostars);
+         }
+         results.appendChild(average); 
+         //quality
+        num = parseInt(data[i].quality);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             quality.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            quality.appendChild(nostars);
+         }
+         results.appendChild(quality); 
 
-    }
-    /* for(let i = 0; i=data.length; i++){
-        var title = document.createElement("p");
-        title.setAttribute("class", "searchResults");
-        title.textContent = data[i].title;
-        results.appendChild(title);
-        var reviewText = document.createElement("p");
-        reviewText.textContent = data[i].text;
-        reviewRext.setAttribute("class", "searchResults");
-        results.appendChild(reviewText);
-       // var avRating = createElement("p");
-     } */
+         //value
+         num = parseInt(data[i].value);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             value.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            value.appendChild(nostars);
+         }
+         results.appendChild(value); 
+
+         //speed
+         num = parseInt(data[i].speed);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             speed.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            speed.appendChild(nostars);
+         }
+         results.appendChild(speed); 
+
+         //safety
+         num = parseInt(data[i].safety);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             safety.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            safety.appendChild(nostars);
+         }
+         results.appendChild(safety); 
+
+         //accuracy
+         num = parseInt(data[i].accuracy);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             accuracy.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            accuracy.appendChild(nostars);
+         }
+         results.appendChild(accuracy); 
+        } 
+    } else {
+        var service = document.createElement('p');
+         service.textContent = data.service;
+         results.appendChild(service);
+         var title = document.createElement('p');
+         title.textContent = data.title;
+         results.appendChild(title);
+         var text = document.createElement('p');
+         text.textContent=data.text;
+         results.appendChild(text);
+         var average = document.createElement('p');
+         average.textContent= 'Average: ';
+         var quality = document.createElement('p');
+         quality.textContent = 'Quality: ';
+         var value = document.createElement('p');
+         value.textContent = 'Value: ';
+         var speed = document.createElement('p');
+         speed.textContent = 'Speed: ';
+         var safety = document.createElement('p');
+         safety.textContent = 'Safety: ';
+         var accuracy = document.createElement('p');
+         accuracy.textContent = 'Accuracy: ';
+         //create the stars
+         //average
+        var num = parseInt(data.average);
+        var noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             average.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            average.appendChild(nostars);
+         }
+         results.appendChild(average); 
+         //quality
+        num = parseInt(data.quality);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             quality.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            quality.appendChild(nostars);
+         }
+         results.appendChild(quality); 
+
+         //value
+         num = parseInt(data.value);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             value.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            value.appendChild(nostars);
+         }
+         results.appendChild(value); 
+
+         //speed
+         num = parseInt(data.speed);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             speed.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            speed.appendChild(nostars);
+         }
+         results.appendChild(speed); 
+
+         //safety
+         num = parseInt(data.safety);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             safety.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            safety.appendChild(nostars);
+         }
+         results.appendChild(safety); 
+
+         //accuracy
+         num = parseInt(data.accuracy);
+        noNum = 5-num;
+    
+         for(let i=0; i<num; i++){
+             var stars = document.createElement('span');
+             stars.innerHTML = '<span class = "fa fa-star" style="color:gold"></span>'
+             accuracy.appendChild(stars);
+         }
+         for(let i=0; i<noNum; i++){
+             var nostars = document.createElement('span');
+             nostars.innerHTML='<span class = "fa fa-star"></span>';
+            accuracy.appendChild(nostars);
+         }
+         results.appendChild(accuracy); 
+        } 
 };
 
 async function categorySearchHandler(event, category) {
@@ -47,13 +267,13 @@ async function categorySearchHandler(event, category) {
         searchURL = '/api/search/value';
     } else if(category === 'accuracy') {
         searchURL = '/api/search/accuracy';
-    }
+    };
+    console.log(searchURL);
     const response = await fetch(searchURL, {
         method: 'GET'
     });
     if (response.ok){
         response.json().then(function(data){
-             console.log(data);
              displayResults(data);
          });
         
@@ -64,31 +284,37 @@ async function categorySearchHandler(event, category) {
 };
 
 speed.addEventListener('click', function () {
+    $('#results').empty();
     category = 'speed';
     categorySearchHandler(event, category);
 });
 
 average.addEventListener('click', function () {
+    $('#results').empty();
     category = 'average';
     categorySearchHandler(event, category);
 });
 
 quality.addEventListener('click', function () {
+    $('#results').empty();
     category = 'quality';
     categorySearchHandler(event, category);
 });
 
 safety.addEventListener('click', function () {
+    $('#results').empty();
     category = 'safety';
     categorySearchHandler(event, category);
 });
 
 value.addEventListener('click', function () {
+    $('#results').empty();
     category = 'value';
     categorySearchHandler(event, category);
 });
 
 accuracy.addEventListener('click', function () {
+    $('#results').empty();
     category = 'accuracy';
     categorySearchHandler(event, category);
 });
@@ -105,7 +331,7 @@ async function providerSearchHandler(event, service) {
     });
     if (response.ok){
         response.json().then(function(data){
-             console.log(data);
+           //console.log(data);
              displayResults(data);
          });
         
@@ -116,6 +342,7 @@ async function providerSearchHandler(event, service) {
 };
 
 reviews.addEventListener('click', function (){
+    $('#results').empty();
     var service = $('#provider').val().trim();
     providerSearchHandler(event, service);
 });
