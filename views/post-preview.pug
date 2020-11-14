@@ -1,10 +1,27 @@
 - var average = review.average
+- var itemName = 'test test'
+//- - function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); };
+
 div.Post
   div.Title
     h2 Service: #{review.service}
     h2 Title: #{review.title}
-    h2 Average Rating: #{average}
+    h2 Average Rating:
+    if average == 5
+      p.stars ★★★★★
+    if average == 4
+      p.stars ★★★★
+    if average == 3
+      p.stars ★★★
+    if average == 2
+      p.stars ★★
+    if average == 1
+      p.stars ★
+    //- include average-stars
+      //- div.hidden #{stars(average)}
+    //- p #{capitalize(itemName)}
     //- overall only for preview. 
+    
     h2 Content:
     p #{review.text}
     button Comment
@@ -12,5 +29,7 @@ div.Post
     button.vote-post-button(type="submit" onClick='voteFormHandler(' + review.id + ')') Vote
     p Votes: #{review.upVotes}
     p Comments: #{review.comments}
+//- - function stars() { let two = document.querySelector('.two'); let three = document.querySelector('.three'); let four = document.querySelector('.four'); let one = document.querySelector('.one'); let five = document.querySelector('.five'); if (average == 1) { one.checked = true; } else if (average == 2) { two.checked = true; } else if (average == 3) { three.checked = true; } else if (average == 4) { four.checked = true; } else if (average == 5) { five.checked = true; } }
+
 script(src="/javascript/vote.js")
     
