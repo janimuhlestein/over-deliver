@@ -1,10 +1,11 @@
-function stars(average) {
+function stars() {
+    let average = document.querySelector('.hidden').innerHTML.trim()
+    console.log(average);
     let two = document.querySelector('.two')
     let three = document.querySelector('.three')
     let four = document.querySelector('.four')
     let one = document.querySelector('.one')
     let five = document.querySelector('.five')
-    console.log(average)
     if (average == 1) {
         one.checked = true;
     } else if (average == 2) {
