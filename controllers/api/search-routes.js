@@ -2,13 +2,6 @@ const router = require('express').Router();
 const {Op, Sequelize} = require('sequelize');
 const sequelize = require('../../config/connection');
 const {Comment, Review} = require('../../models');
-const mysql = require('mysql2');
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'sanJuanCounty#1',
-    database: 'over_deliver_db'
-});
 
 //get reviews with specific service
 router.get('/reviews/:service', (req,res)=>{
@@ -136,7 +129,10 @@ router.get('/service/recent/:service', (req,res)=>{
 router.get('/average/:average',(req,res)=>{
     Review.findAll({
         where: {
-            average: req.params.average
+            average: req.params.average,
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
         },
         attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']]
@@ -158,7 +154,10 @@ router.get('/average/:average',(req,res)=>{
 router.get('/quality/:quality', (req,res)=>{
     Review.findAll({
         where:{
-            quality: req.params.quality
+            quality: req.params.quality,
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
         },
         attributes: ['id', 'service', 'average','quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']]
@@ -180,7 +179,10 @@ router.get('/quality/:quality', (req,res)=>{
 router.get('/value/:value', (req,res)=>{
     Review.findAll({
         where:{
-            value: req.params.value
+            value: req.params.value,
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
         },
         attributes: ['id','service', 'average','quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
@@ -224,7 +226,10 @@ router.get('/accuracy/:accuracy', (req,res)=>{
 router.get('/safety/:safety', (req,res)=>{
     Review.findAll({
         where: {
-            safety: req.params.safety
+            safety: req.params.safety,
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
         },
         attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
@@ -246,7 +251,10 @@ router.get('/safety/:safety', (req,res)=>{
 router.get('/speed/:speed', (req,res)=>{
     Review.findAll({
         where:{
-            speed: req.params.speed
+            speed: req.params.speed,
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
         },
         attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
@@ -267,7 +275,10 @@ router.get('/speed/:speed', (req,res)=>{
 router.get('/average/:average',(req,res)=>{
     Review.findAll({
         where: {
-            average: req.params.average
+            average: req.params.average,
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
         },
         attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']]
@@ -289,7 +300,10 @@ router.get('/average/:average',(req,res)=>{
 router.get('/quality/:quality', (req,res)=>{
     Review.findAll({
         where:{
-            quality: req.params.quality
+            quality: req.params.quality,
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
         },
         attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']]
@@ -311,7 +325,10 @@ router.get('/quality/:quality', (req,res)=>{
 router.get('/value/:value', (req,res)=>{
     Review.findAll({
         where:{
-            value: req.params.value
+            value: req.params.value,
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
         },
         attributes: ['id','service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
@@ -333,7 +350,10 @@ router.get('/value/:value', (req,res)=>{
 router.get('/accuracy/:accuracy', (req,res)=>{
     Review.findAll({
         where:{
-            accuracy: req.params.accuracy
+            accuracy: req.params.accuracy,
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
         },
         attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['created_at', 'DESC']],
@@ -354,7 +374,22 @@ router.get('/accuracy/:accuracy', (req,res)=>{
 //search by specific category
 router.get('/average', (req,res)=>{
     Review.findAll({
-        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        where: {
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
+        },
+        attributes: [
+        'id',
+        'title',
+        'text', 
+        'service', 
+        'average', 
+        'quality', 
+        'value', 
+        'speed', 
+        'safety', 
+        'accuracy'],
         order: [['average', 'DESC']],
     })
     .then(dbSearchData=>{
@@ -372,7 +407,12 @@ router.get('/average', (req,res)=>{
 
 router.get('/quality', (req,res)=>{
     Review.findAll({
-        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        where: {
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
+        },
+        attributes: ['id', 'title', 'text','service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['quality', 'DESC']],
     })
     .then(dbSearchData=>{
@@ -390,7 +430,12 @@ router.get('/quality', (req,res)=>{
 
 router.get('/value', (req,res)=>{
     Review.findAll({
-        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        where: {
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
+        },
+        attributes: ['id', 'title', 'text','service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['value', 'DESC']],
     })
     .then(dbSearchData=>{
@@ -408,7 +453,12 @@ router.get('/value', (req,res)=>{
 
 router.get('/speed', (req,res)=>{
     Review.findAll({
-        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        where: {
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
+        },
+        attributes: ['id', 'title', 'text', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['speed', 'DESC']],
     })
     .then(dbSearchData=>{
@@ -426,7 +476,12 @@ router.get('/speed', (req,res)=>{
 
 router.get('/safety', (req,res)=>{
     Review.findAll({
-        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        where: {
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
+        },
+        attributes: ['id', 'title', 'text','service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['safety', 'DESC']],
     })
     .then(dbSearchData=>{
@@ -444,7 +499,12 @@ router.get('/safety', (req,res)=>{
 
 router.get('/accuracy', (req,res)=>{
     Review.findAll({
-        attributes: ['id', 'service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
+        where: {
+            created_at: {
+                [Op.gte]: subtractDays(14)
+            }
+        },
+        attributes: ['id', 'title', 'text','service', 'average', 'quality', 'value', 'speed', 'safety', 'accuracy'],
         order: [['accuracy', 'DESC']],
     })
     .then(dbSearchData=>{
