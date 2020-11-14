@@ -6,7 +6,6 @@ const { Review, User } = require('../models')
 router.get('/', (req,res)=>{
     Review.findAll({
         limit: 20 ,
-        order: [['average', 'DESC']],
         attributes: [
             'title',
             'text',

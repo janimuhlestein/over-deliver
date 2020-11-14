@@ -1,12 +1,38 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const {User, Review} = require('../models');
+let randomLength = 1;
+let randomService = "DoorDash";
 
-//display trending page
+//find length
 router.get('/', (req,res)=>{
+    Review.findAndCountAll()
+        .then(dbCountData => {
+            randomLength = Math.floor(Math.random() * Math.floor(dbCountData.count) + 1);
+            console.log(randomLength)
+            return randomLength
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+
+    Review.findByPk(randomLength)
+        .then(dbServiceData => {
+            randomService = dbServiceData.service
+            console.log(randomService)
+            return randomService
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });   
+    
     Review.findAll({
         limit: 20 ,
-        order: sequelize.literal('rand()'),
+        where: {
+            service: randomService
+        },
         attributes: [
             'title',
             'text',
@@ -30,6 +56,7 @@ router.get('/', (req,res)=>{
     })
         .then(dbReviewData => {
             const reviews = dbReviewData.map(review => review.get({ plain: true }));
+            console.log(randomService)
             res.render("random", {
                 title: "Random",
                 reviews,
@@ -39,7 +66,7 @@ router.get('/', (req,res)=>{
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
-        });   
+        });  
 });
 
 module.exports = router;
