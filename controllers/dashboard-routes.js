@@ -37,7 +37,8 @@ router.get('/', withAuth, (req, res) => {
             res.render("dashboard", {
                 title: "Dashboard",
                 reviews,
-                loggedIn: req.session.loggedIn
+                loggedIn: req.session.loggedIn,
+                user: req.session.username
             })
         })
         .catch(err => {
