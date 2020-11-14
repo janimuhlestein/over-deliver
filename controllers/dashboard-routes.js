@@ -6,6 +6,35 @@ const { User, Review, Comment, Vote } = require('../models');
 
 //get all of their reviews, plus numbers of comments and votes
 router.get('/', withAuth, (req, res) => {
+    var voteCount;
+    var commentCount;
+    var reviewCount;
+    Comment.count({
+        where: {
+            user_id: req.session.user_id
+        }
+    })
+    .then(count=>{
+        commentCount = count;
+    });
+
+    Vote.count({
+        where: {
+            user_id: req.session.user_id
+        },
+    })
+    .then(count=>{
+        voteCount = count;
+    });
+
+    User.count({
+        where: {
+            id: req.session.user_id
+        }
+    })
+    .then(count=>{
+        reviewCount = count;
+    })
     Review.findAll({
         where: {
             user_id: req.session.user_id
@@ -34,9 +63,14 @@ router.get('/', withAuth, (req, res) => {
     })
         .then(dbReviewData => {
             const reviews = dbReviewData.map(review => review.get({ plain: true }));
+            console.log(voteCount, reviewCount, commentCount);
+            console.log(dbReviewData);
             res.render("dashboard", {
                 title: "Dashboard",
                 reviews,
+                voteCount,
+                commentCount,
+                reviewCount,
                 loggedIn: req.session.loggedIn
             })
         })

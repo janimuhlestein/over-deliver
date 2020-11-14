@@ -4,7 +4,33 @@ var quality = document.querySelector('#quality');
 var safety = document.querySelector('#safety');
 var value = document.querySelector('#value');
 var accuracy = document.querySelector('#accuracy');
+var results = document.querySelector('#results');
 var category;
+
+displayResults = (data)=>{
+    console.log("got to display");
+    console.log(data);
+    for(let i = 0; i<data.length; i++){
+        var title = document.createElement('p');
+         title.textContent = data[i].title;
+         results.appendChild(title);
+         var text = document.createElement('p');
+         text.textContent = data[i].text;
+         results.appendChild(text);
+
+    }
+    /* for(let i = 0; i=data.length; i++){
+        var title = document.createElement("p");
+        title.setAttribute("class", "searchResults");
+        title.textContent = data[i].title;
+        results.appendChild(title);
+        var reviewText = document.createElement("p");
+        reviewText.textContent = data[i].text;
+        reviewRext.setAttribute("class", "searchResults");
+        results.appendChild(reviewText);
+       // var avRating = createElement("p");
+     } */
+};
 
 async function categorySearchHandler(event, category) {
     event.preventDefault();
@@ -28,6 +54,7 @@ async function categorySearchHandler(event, category) {
     if (response.ok){
         response.json().then(function(data){
              console.log(data);
+             displayResults(data);
          });
         
      } else {
@@ -79,6 +106,7 @@ async function providerSearchHandler(event, service) {
     if (response.ok){
         response.json().then(function(data){
              console.log(data);
+             displayResults(data);
          });
         
      } else {
@@ -101,7 +129,8 @@ async function allReviewsSearchHandler(event) {
     });
     if (response.ok){
         response.json().then(function(data){
-             console.log(data);
+            // console.log(data);
+            displayResults(data);
          });
         
      } else {
@@ -109,4 +138,4 @@ async function allReviewsSearchHandler(event) {
          alert(response.statusText);
      };
 };
-show.addEventListener('click', allReviewsSearchHandler);
+show.addEventListener('click', allReviewsSearchHandler); 

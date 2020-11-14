@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User, Review, Comment } = require('../../models');
 const Vote = require('../../models/Vote');
+const sequelize=require('../../config/connection');
 
 router.get('/', (req, res) => {
     User.findAll({
@@ -34,7 +35,7 @@ router.get('/:id', (req, res) => {
                     'value', 
                     'speed', 
                      'safety', 
-                    'accuracy'],
+                    'accuracy']
                 },
                 {
                 model: Comment,
