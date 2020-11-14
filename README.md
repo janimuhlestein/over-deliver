@@ -10,5 +10,5 @@ Delivery rating app
 * dotenv
 * jest
 * path
-* pug
+* express-session
 * mysql2
