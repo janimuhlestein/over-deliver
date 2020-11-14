@@ -2,13 +2,6 @@ const router = require('express').Router();
 const {Op, Sequelize} = require('sequelize');
 const sequelize = require('../../config/connection');
 const {Comment, Review} = require('../../models');
-const mysql = require('mysql2');
-const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'sanJuanCounty#1',
-    database: 'over_deliver_db'
-});
 
 //get reviews with specific service
 router.get('/reviews/:service', (req,res)=>{
