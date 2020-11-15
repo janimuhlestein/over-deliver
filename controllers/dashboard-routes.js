@@ -97,7 +97,8 @@ router.get('/edit/:id', withAuth, (req, res) => {
             'value',
             'speed',
             'safety',
-            'accuracy'
+            'accuracy',
+            'service'
         ],
         include: [
             {
