@@ -344,7 +344,11 @@ async function providerSearchHandler(event, service) {
 reviews.addEventListener('click', function (){
     $('#results').empty();
     var service = $('#provider').val().trim();
+    if(!service) {
+        alert("You need to enter a provider in order to search");
+    } else {
     providerSearchHandler(event, service);
+    };
 });
 
 var show = document.querySelector("#show");
