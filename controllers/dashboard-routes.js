@@ -128,6 +128,7 @@ router.get('/view/:id', withAuth, (req, res) => {
         },
         attributes: [
             'id',
+            'service',
             'title',
             'text',
             'average',
