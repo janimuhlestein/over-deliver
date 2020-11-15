@@ -1,0 +1,8 @@
+extends layout
+
+block layout-content
+    img(src="/assets/images/trending.png" class="img-fluid mx-auto" id="trendingImgHeader")
+    if reviews.length
+        div.post-row.wrap
+            each review in reviews
+                include post-preview

@@ -1,0 +1,18 @@
+extends layout
+
+block layout-content
+    form.signup-form.input-form
+        img(src='/assets/images/rateyourdelivery.png' id="signupImg" class="img-fluid mx-auto")
+        h4(id="signupTitle") Sign up for Overdeliver, the ultimate delivery rating system!
+        h2(id="signupUsername") USERNAME
+            input(type='text' id="username-signup")
+        h2(id="signupEmail") EMAIL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            input(type='text' id="email-signup")
+        h2(id="signupPassword") PASSWORD
+            input(type='password' id="password-signup")
+        br
+        button(type="submit" class="btn" id="signupButton") SIGN UP
+    script(src="/javascript/signup.js")
+
+//- input username, password, e-mail
+//- message if username or e-mail already exists

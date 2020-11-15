@@ -1,0 +1,15 @@
+extends layout
+
+block layout-content
+    img(src="/assets/images/Welcome.png" id="loginImg" class="img-fluid" width="100%")
+    form(class="login-form")
+        div(class="login-body")
+            div(class="login-uname") USERNAME:
+            input(type='text' id="username-login")
+            div(class="login-pword") PASSWORD:
+            input(type='password' id="password-login")
+            br
+            button(type="submit" class="login-btn") LOG IN
+    script(src="/javascript/login.js")
+
+
