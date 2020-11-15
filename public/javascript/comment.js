@@ -1,10 +1,14 @@
 async function newCommentHandler(click) {
-    click.preventDefault();
+  //  click.preventDefault();
     const text = document.querySelector('#comment').value;
+    var review_id = window.location.href.split('/');
+    console.log(review_id);
+    review_id = review_id[5];
 
     const response = await fetch(`/api/comments`, {
         method: 'POST',
         body: JSON.stringify({
+            review_id,
             text
         }),
         headers: {
