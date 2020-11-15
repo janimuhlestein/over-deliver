@@ -2,39 +2,45 @@ extends layout
 
 block layout-content
     form.search-form.input-form
-        h3 Search top ratings by Category
-        //- div.input-group.mt-3.mb-3
-        //-     div.input-group-prepend
-        //-         button.btn.btn-outline-secondary.dropdown-toggle(data-toggle="dropdown" type="button") Category
-        //-         div.dropdown-menu(aria-labelledby="dropdownMenuButton")
-        //-             a.dropdown-item(href="#") Safety
-        //-             a.dropdown-item(href="#") Quality
-        //-             a.dropdown-item(href="#") Accuracy
-        //-             a.dropdown-item(href="#") Speed
-        //-             a.dropdown-item(href="#") Value
-        //-             a.dropdown-item(href="#") Average
-        //-         input(type="text" class="form-control" placeholder="Provider/Leave blank for all")
-        div.dropdown
-            button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Category
-            div.dropdown-menu(aria-labelledby="dropdownMenuButton")
-                a.dropdown-item(id="safety" href="#") Safety
-                a.dropdown-item(id="quality" href="#") Quality
-                a.dropdown-item(id="accuracy" href="#") Accuracy
-                a.dropdown-item(id="speed" href="#") Speed
-                a.dropdown-item(id="value" href="#") Value
-                a.dropdown-item(id="average" href="#") Average
-        br
-        h3 Search by Provider
+        img(src="/assets/images/search.png" class="img-fluid mx-auto" id="searchImage")
+        img(src="/assets/images/Search-by-provider.png" class="img-fluid mx-auto" id="searchFont")
         input(type="text" id="provider" class="form-control" placeholder="Provider")
-        button Images
-        button(id="reviews") Reviews
+        br
+        button(class="btn" id="reviews") REVIEWS
         br
         br
-        h3 Most recent Reviews for all providers
-        button(id="show") Show
-        div(id="results")
-        script(src='/javascript/search.js')
+        div(class="container")
+            div(class="row")
+                div(class="col-6")
+                    h4(id="topRatings") Search Top Ratings by Category
+                    //- .input-group.mt-3.mb-3
+                    //-     .input-group-prepend
+                                button.btn.btn-outline-secondary.dropdown-toggle(data-toggle="dropdown" type="button") Category
+                                div.dropdown-menu(aria-labelledby="dropdownMenuButton")
+                                    a.dropdown-item(href="#") SAFETY
+                                    a.dropdown-item(href="#") QUALITY
+                                    a.dropdown-item(href="#") ACCURACY
+                                    a.dropdown-item(href="#") SPEED
+                                    a.dropdown-item(href="#") VALUE
+                                    a.dropdown-item(href="#") AVERAGE
+                                input(type="text" class="form-control" placeholder="Provider/Leave blank for all")
+                    div.dropdown
+                    button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") CATEGORY
+                    div.dropdown-menu(aria-labelledby="dropdownMenuButton")
+                        a.dropdown-item(id="safety" href="#") Safety
+                        a.dropdown-item(id="quality" href="#") Quality
+                        a.dropdown-item(id="accuracy" href="#") Accuracy
+                        a.dropdown-item(id="speed" href="#") Speed
+                        a.dropdown-item(id="value" href="#") Value
+                        a.dropdown-item(id="average" href="#") Average
+                    br
+                div(class="col-6")
+                    h4(id="reviewHeader") Most recent Reviews for all providers
+                    button(class="btn" id="show") SHOW
+                    div(id="results")
+                    script(src='/javascript/search.js')
 
 //- show results below
+        
 
 
