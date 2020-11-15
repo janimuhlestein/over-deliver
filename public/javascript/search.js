@@ -357,6 +357,7 @@ async function allReviewsSearchHandler(event) {
     if (response.ok){
         response.json().then(function(data){
             // console.log(data);
+            $('#results').empty();
             displayResults(data);
          });
         

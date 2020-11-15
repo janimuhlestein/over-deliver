@@ -18,8 +18,8 @@ router.get('/', (req,res)=>{
             'safety',
             'id',
             'accuracy',
-            [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
-            [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upvotes']
+            [sequelize.literal('(SELECT COUNT(*) FROM comment where review.id = comment.review_id)'), 'comments'],
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE review.id = vote.review_id)'), 'upVotes']
         ],
         include: [
             {
