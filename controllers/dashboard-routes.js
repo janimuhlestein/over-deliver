@@ -14,27 +14,28 @@ router.get('/', withAuth, (req, res) => {
             user_id: req.session.user_id
         }
     })
-    .then(count=>{
-        commentCount = count;
-    });
+        .then(count => {
+            commentCount = count;
+        });
 
     Vote.count({
         where: {
             user_id: req.session.user_id
         },
     })
-    .then(count=>{
-        voteCount = count;
-    });
+        .then(count => {
+            voteCount = count;
+        });
 
-    User.count({
+    Review.count({
         where: {
-            id: req.session.user_id
+            user_id: req.session.user_id
         }
     })
-    .then(count=>{
-        reviewCount = count;
-    })
+        .then(count => {
+            reviewCount = count;
+        })
+
     Review.findAll({
         where: {
             user_id: req.session.user_id
@@ -71,6 +72,7 @@ router.get('/', withAuth, (req, res) => {
                 voteCount,
                 commentCount,
                 reviewCount,
+                user: req.session.username,
                 loggedIn: req.session.loggedIn
             })
         })
@@ -84,6 +86,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     Review.findOne({
         where: {
             id: req.params.id
+
         },
         attributes: [
             'id',
@@ -118,6 +121,42 @@ router.get('/edit/:id', withAuth, (req, res) => {
         });
 });
 
-
+router.get('/view/:id', withAuth, (req, res) => {
+    Review.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'title',
+            'text',
+            'average',
+            'quality',
+            'value',
+            'speed',
+            'safety',
+            'accuracy'
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE review.id = vote.review_id)'), 'upVote_count']],
+        include: [
+            {
+                model: Comment,
+                attributes: ['text']
+            }
+        ]
+    })
+        .then(dbReviewData => {
+            if (!dbReviewData) {
+                res.status(404).json({ message: 'No review found with this id' });
+                return;
+            }
+            const review = dbReviewData.get({ plain: true });
+            console.log(review);
+            res.render('full-post', { review, loggedIn: true });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 
 module.exports = router;
