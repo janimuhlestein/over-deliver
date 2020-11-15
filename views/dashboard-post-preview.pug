@@ -17,7 +17,6 @@ div.Post
       p.stars ★
     h2(id="postReviewHeading") Review
     p(id="postReviewText") #{review.text}
-    button(class="btn" id="postCommentButton") Comment
     a(href="/dashboard/edit/" + review.id)
         button(class="btn" id="postEditButton"  ) Edit
     button.vote-post-button(type="submit" class="btn" id="postVoteButton" onClick='voteFormHandler(' + review.id + ')') Vote
