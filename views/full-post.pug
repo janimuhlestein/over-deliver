@@ -1,0 +1,65 @@
+extends layout
+    block layout-content
+        .Create
+            h2 Service: #{review.service}
+            h2 Title: #{review.title}
+            h2 Safety:
+            if review.safety == 5
+            p.stars ★★★★★
+            if review.safety == 4
+            p.stars ★★★★
+            if review.safety == 3
+            p.stars ★★★
+            if review.safety == 2
+            p.stars ★★
+            if review.safety == 1
+            p.stars ★
+            h2 Quality:
+            if review.quality == 5
+            p.stars ★★★★★
+            if review.quality == 4
+            p.stars ★★★★
+            if review.quality == 3
+            p.stars ★★★
+            if review.quality == 2
+            p.stars ★★
+            if review.quality == 1
+            p.stars ★
+            h2 Accuracy:
+            if review.accuracy == 5
+            p.stars ★★★★★
+            if review.accuracy == 4
+            p.stars ★★★★
+            if review.accuracy == 3
+            p.stars ★★★
+            if review.accuracy == 2
+            p.stars ★★
+            if review.accuracy == 1
+            p.stars ★
+            h2 Speed:
+            if review.speed == 5
+            p.stars ★★★★★
+            if review.speed == 4
+            p.stars ★★★★
+            if review.speed == 3
+            p.stars ★★★
+            if review.speed == 2
+            p.stars ★★
+            if review.speed == 1
+            p.stars ★
+            h2 Value:
+            if review.value == 5
+            p.stars ★★★★★
+            if review.value == 4
+            p.stars ★★★★
+            if review.value == 3
+            p.stars ★★★
+            if review.value == 2
+            p.stars ★★
+            if review.value == 1
+            p.stars ★
+            h2 Content:
+            p #{review.text}
+
+    if loggedIn
+        include comment
