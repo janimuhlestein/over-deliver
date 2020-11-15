@@ -2,24 +2,37 @@ extends layout
 
 block layout-content
   div.View
+    img(src="/assets/images/dashboarddelivery.png")
     div.flex-row
       div.Message
         //- div(data-toggle="modal" data-target="#avatar") 
         //-   img(src="placeholder.webp")
         //-   p.flex-item Click to upload an avatar
         //-   //- boostrap modal       
-        div.Title
-          h2 Username
-          h3 Number of reviews: reviews
-          h3 Number of upvotes: upvotes
-          h3 Number of comments: comments
+        
+        div(class="container")
+            div(class="row")
+              div(class="col-3")
+                h3(id="dashboardUsername" class="dashboard-title") USERNAME
+                  div(class="dashboard-container")
+                    #{user}
+              div(class="col-3")
+                h3(id="dashboardReviews" class="dashboard-title") REVIEWS
+                  div(class="dashboard-container")
+              div(class="col-3")
+                h3(id="dashboardVotes" class="dashboard-title") VOTES
+                  div(class="dashboard-container")
+              div(class="col-3")
+                h3(id="dashboardComments" class="dashboard-title") COMMENTS
+                  div(class="dashboard-container")
+
       div.Create
         h1 Create New Post
         br
         div.ratings
-          h2 Service: 
+          h2(class="dashboard-review-title") SERVICE  
             input(type='text' id="service")
-          h2 Title:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          h2(class="dashboard-review-title") TITLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             input(type='text' id="review-title")
           //- tooltips for category criteria
           div
@@ -38,15 +51,13 @@ block layout-content
             h2 <a href="#" data-toggle="tooltip" title="Did you feel the prices matched up with what you got?"><i class="fas fa-info-circle"></i ></a>  Value:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               include stars
           br
-          h2 Review Content:
+          h2(id="writeReview") Write a Review:
             textarea(type='input' id="review-text")
-          button.btn(id="create" type="submit" onClick="newFormHandler()") Create
-  div.post-row.wrap
-    include post-preview
-    include post-preview
-    include post-preview
-    include post-preview
-    include post-preview
+          button.btn(id="create" type="submit" onClick="newFormHandler()") CREATE
+  if reviews.length
+    div.post-row.wrap
+      each review in reviews
+        include post-preview
 
   //- div.modal(id="avatar" role="dialog")
   //-   div.modal-dialog

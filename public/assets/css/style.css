@@ -1,0 +1,311 @@
+.container {
+    padding: 20px 10px 20px 10px;
+}
+
+.lead {
+    font-size: 25px;
+}
+
+.nav-item {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.btn {
+    color: #345D23;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+.h2 {
+    font-size: 50px;
+    padding: 20px;
+    text-align: left;
+    color: #345D23;
+}
+
+.lead {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    text-align: left;
+
+}
+
+h3 {
+    color: white;
+    font-size: 30px;
+    background-color: #80A860;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.h4 {
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* SIGNUP STYLES */
+
+#signupContainer {
+    background-image: url(/public/assets/images/masala.png);
+    align-content: center;
+    width: 600px;
+    height: 200px;
+}
+
+#signupBtn {
+    color: white;
+    background-color: #345D23;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    justify-content: center;
+}
+
+#signupButton {
+    color: white;
+    background-color: #345D23;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+#signupTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 29px;
+    background-color: #345D23;
+    padding: 10px 0px 5px 0px;
+    color: white;
+}
+
+#signupImg {
+    width: 100%;
+    padding: 30px 0px 10px 0px;
+}
+
+#signupUsername, #signupEmail, #signupPassword {
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: black;
+    padding: 10px 0px 0px 0px;
+}
+
+#username-signup, #email-signup, #password-signup {
+    box-sizing: border-box;
+    padding: 5px 5px;
+    border: none;
+    border-bottom: 2.5px solid #345D23;
+}
+/* END OF SIGNUP STYLES */
+
+/* LOGIN STYLES */
+
+#loginImg {
+    width: 100%;
+    padding: 0px 0px 5px 0px;
+}
+  
+.login-form{
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 20px;
+    height: 50%;
+    width: 80%;
+  }
+  
+  .login-uname{
+    padding-bottom: 3px;
+    color: white;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+  }
+  
+  .login-pword{
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-bottom: 3px;
+    margin-top: 2px;
+    color: white;
+  }
+  
+  #username-login, #password-login {
+    width: 85%;
+    box-sizing: border-box;
+    padding: 5px 5px;
+  }
+  
+  .login-btn{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: #345D23;
+    color: white;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid black;
+    border-radius: .25rem;
+   
+  }
+  
+  .login-body{
+    background-color: #80A860;
+  }
+  .hidden {
+    display: none;
+  }
+/* END SEARCH STYLES */
+
+/* SEARCH STYLES */
+#searchImage {
+    padding: 0px 0px 10px 0px;
+}
+
+#searchHeader {
+    font-family: 'Open Sans', sans-serif;
+    background-color: white;
+    color: #80A860;
+}
+
+#provider {
+    box-sizing: border-box;
+    padding: 5px 5px;
+    border: none;
+    border-bottom: 2.5px solid #345D23;
+}
+
+.input-group {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #345D23;
+}
+
+#searchImagesButton, #reviews, #dropdown, #show {
+    background-color: white;
+    border: 2px solid #345D23;
+    color: #345D23;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-align: center;
+    justify-items: center;
+}
+
+#topRatings, #reviewHeader {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: #80A860;
+    text-align: center;
+    background-color: white;
+}
+
+#results {
+    background-color: rgba(128, 168, 96, 0.7);
+    padding: 30px 30px 15px 30px;
+    border-bottom: var(--ui-shadow-border);
+    box-shadow: var(--ui-shadow);
+    border-radius: 10px;
+    margin: auto;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-grow: 3;
+    width: 900px;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* DASHBOARD */
+.dashboard-title {
+    border-bottom: var(--ui-shadow-border);
+    box-shadow: var(--ui-shadow);
+    text-align: center;
+    padding: 15px 0px 0px 0px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 30px;
+}
+
+.dashboard-container {
+    background-color: white;
+    border: 2px solid #345D23;
+    padding: 50px 5px 50px 5px;
+    border-radius: 0px 0px 10px 0px;
+    color: black;
+}
+
+#dashboardUsername, #dashboardVotes {
+    background-color: #345D23;
+}
+
+#dashboardReviews, #dashboardComments {
+    background-color: #80A860;
+}
+
+.Create {
+    background-color: rgba(128, 168, 96, 0.7);
+    padding: 30px 30px 15px 30px;
+    border-bottom: var(--ui-shadow-border);
+    box-shadow: var(--ui-shadow);
+    border-radius: 10px;
+    margin: auto;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-grow: 3;
+    width: 900px;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+#service, #review-title, #review-text {
+    color: black;
+    box-sizing: border-box;
+    padding: 5px 5px;
+    border: none;
+    border-bottom: 2.5px solid #345D23;
+    background-color: rgb(255,255,255,0.8);
+    border-radius: 5px;
+}
+
+#create {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    padding: 15px;
+    background-color: white;
+    color: #345D23;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+  }
+
+.stars {
+    font-size: 30px;
+    color: gold;
+  }
+/* END DASHBOARD STYLES */
+
+footer {
+    background-color: #345D23;
+    text-align: center;
+    color: white;
+    padding: 70px;
+    bottom: 0;
+}
+
+.footer {
+    color: white;
+    text-align: left;
+    align-items: bottom;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+}
+

@@ -2,14 +2,19 @@ extends layout
 
 block layout-content
     form.signup-form.input-form
-        h1 Signup Form
-        h2 Username:
+
+        img(src='/assets/images/rateyourdelivery.png' id="signupImg" class="img-fluid mx-auto")
+        h4(id="signupTitle") Sign up for Overdeliver, the ultimate delivery rating system!
+        h2(id="signupUsername") USERNAME
             input(type='text' id="username-signup")
-        h2 E-mail:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        h2(id="signupEmail") EMAIL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             input(type='text' id="email-signup")
-        h2 Password:
-            input(type='text' id="password-signup")
-        button(type="submit") Sign-up
+        h2(id="signupPassword") PASSWORD   
+            input(type='password' id="password-signup")
+        <br>
+        button(type="submit" class="btn" id="signupButton") SIGN UP    
+        
     script(src="/javascript/signup.js")
 
 //- input username, password, e-mail
