@@ -2,9 +2,9 @@
 OverDeliver is a rating application for delivery foods from restaurants and grocery stores. 
 
 # Our Team
-William Santee
-Sarah Gambles
-Jani Muhlestein
+William Santee,
+Sarah Gambles,
+Jani Muhlestein,
 Jonathan Lightheart
 
 # User Story
