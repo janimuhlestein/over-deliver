@@ -5,23 +5,29 @@ block layout-content
         h1 Edit Post
         br
         h2(class="edit-post-text") Service: 
-            input(type='text')
+            input(type='text' value= `${review.service}` id="service")
         h2 Title:
-            input(type='text')
-        //- need to have things be populated when entering this page - stars will be trickier
-        h2 Safety:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            include stars
-        h2 Quality:&nbsp;&nbsp;&nbsp;&nbsp;
-            include stars
-        h2 Accuracy:
-            include stars
-        h2 Speed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            include stars
-        h2 Value:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            include stars
+            input(type='text' value=`${review.title}` id="review-title")
+        div
+            h2 Safety:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                include stars
+        div
+            h2 Quality:&nbsp;&nbsp;&nbsp;&nbsp;
+                include stars
+        div
+            h2 Accuracy:
+                include stars
+        div
+            h2 Speed:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                include stars
+        div
+            h2 Value:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                include stars
         br
         h2 Review Content:
-        textarea(type='input')
-        button Save
-        button Delete
+            textarea(type='input' id="review-text") #{review.text}
+        button.btn(type='submit' id="create") Save
+        button.btn.delete-review-btn(type='button') Delete
         script(src='/javascript/stars.js')
+        script(src='/javascript/edit.js')
+        script(src='/javascript/delete.js')
