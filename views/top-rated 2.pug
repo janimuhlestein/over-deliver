@@ -1,8 +1,0 @@
-extends layout
-
-block layout-content
-    img(src="/assets/images/toprated.png" class="img-fluid mx-auto" id="topratedImgHeader")
-    if reviews.length
-        div.post-row.wrap
-            each review in reviews
-                include post-preview
