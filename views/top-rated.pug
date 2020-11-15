@@ -1,0 +1,8 @@
+extends layout
+
+block layout-content
+    h1 TOP RATED
+    if reviews.length
+        div.post-row.wrap
+            each review in reviews
+                include top-post-preview
