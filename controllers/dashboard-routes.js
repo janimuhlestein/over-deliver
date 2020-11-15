@@ -52,8 +52,8 @@ router.get('/', withAuth, (req, res) => {
             'safety',
             'id',
             'accuracy',
-            [sequelize.literal('(SELECT COUNT(*) FROM comment c JOIN review r on c.review_id = r.id)'), 'comments'],
-            [sequelize.literal('(SELECT COUNT(*) FROM vote v JOIN review r on v.review_id = r.id)'), 'upVotes']
+            [sequelize.literal('(SELECT COUNT(*) FROM comment where review.id = comment.review_id)'), 'comments'],
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE review.id = vote.review_id)'), 'upVotes']
         ],
         include: [
             {
@@ -64,7 +64,7 @@ router.get('/', withAuth, (req, res) => {
     })
         .then(dbReviewData => {
             const reviews = dbReviewData.map(review => review.get({ plain: true }));
-            console.log(voteCount, reviewCount, commentCount);
+            console.log(reviews);
             console.log(dbReviewData);
             res.render("dashboard", {
                 title: "Dashboard",
