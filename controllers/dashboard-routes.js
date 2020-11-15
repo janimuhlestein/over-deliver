@@ -98,7 +98,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
             'speed',
             'safety',
             'accuracy'
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE review.id = vote.review_id)'), 'upVote_count']],
+        ],
         include: [
             {
                 model: Comment,
@@ -136,7 +136,7 @@ router.get('/view/:id', withAuth, (req, res) => {
             'speed',
             'safety',
             'accuracy'
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE review.id = vote.review_id)'), 'upVote_count']],
+        ],
         include: [
             {
                 model: Comment,
