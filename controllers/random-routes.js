@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User, Review } = require('../models');
+const { User, Review, Comment } = require('../models');
 let randomLength = 1;
 let randomService = "DoorDash";
 

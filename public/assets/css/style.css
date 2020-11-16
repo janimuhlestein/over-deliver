@@ -398,7 +398,7 @@ footer {
 
 /* EXTRA STYLES */
 
-.Post {
+.post {
     padding: 30px;
     border-bottom: var(--ui-shadow-border);
     box-shadow: var(--ui-shadow);
