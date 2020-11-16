@@ -378,6 +378,22 @@ textarea {
     text-decoration: underline;
 }
 
+.comment, .Title { 
+  background-color: white; 
+  color: #80A860; 
+  border-radius: 10px; 
+  font-family: Arial, Helvetica, sans-serif; 
+  font-size: 30px; 
+  text-decoration: underline; 
+  padding: 10px 5px 10px 5px;
+}
+
+#submit-comment { 
+  background-color: #345D23; 
+  color: white; 
+  padding: 10px 0px 10px 0px;
+}
+
 /* ENG POST STYLING */
 
 footer {
