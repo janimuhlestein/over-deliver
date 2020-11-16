@@ -393,7 +393,7 @@ textarea {
     text-decoration: underline;
 }
 
-.comment, .Title { 
+.comment, .title { 
   background-color: white; 
   color: #80A860; 
   border-radius: 10px; 
@@ -401,15 +401,19 @@ textarea {
   font-size: 30px; 
   text-decoration: underline; 
   padding: 10px 5px 10px 5px;
+  text-align: center;
+  justify-content: center;
 }
 
 #submit-comment { 
   background-color: #345D23; 
   color: white; 
   padding: 10px 0px 10px 0px;
+  justify-content: center;
+  text-align: center;
 }
 
-/* ENG POST STYLING */
+/* END POST STYLING */
 
 footer {
     background-color: #345D23;
