@@ -63,8 +63,11 @@ block layout-content
         p #{review.text}
         br
         br
-        section.comments
-            
+        //- if review.comments.length
+        //-     section.comments
+        //-         each comments in reviews
+        //-             include display-comment
+
 
     if loggedIn
         include comment
