@@ -45,7 +45,7 @@ async function newEditHandler(click) {
 }
 
 document.getElementById("create").addEventListener('click', function(){
-    if(!service || !quality || !value || !speed || !accuracy || !safety) {
+    if(!safety || !quality || !value || !speed || !accuracy || !safety) {
         alert("Please select all ratings!")
     } else {
         newEditHandler('click');
