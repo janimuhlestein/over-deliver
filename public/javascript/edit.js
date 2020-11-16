@@ -1,9 +1,3 @@
-var safety;
-var quality;
-var accuracy;
-var speed;
-var value;
-
 async function newEditHandler(click) {
     click.preventDefault();
     const id = window.location.toString().split('/')[
@@ -16,9 +10,11 @@ async function newEditHandler(click) {
     quality = document.querySelector("#quality").title;
     accuracy = document.querySelector("#accuracy").title;
     speed = document.querySelector("#speed").title;
-    value = document.querySelector("#value").title;
+    value = document.querySelector("#value").title; 
     const average = ((parseInt(safety) + parseInt(quality) + parseInt(accuracy) + parseInt(speed) + parseInt(value)) / 5).toFixed(2);
-
+    if(!safety || !quality || !accuracy || !speed || !value) {
+        alert("Please select all ratings!");
+    }
     const response = await fetch(`/api/reviews/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
@@ -36,7 +32,7 @@ async function newEditHandler(click) {
             'Content-Type': 'application/json'
         }
     });
-
+    console.log(response);
     if (response.ok) {
         document.location.replace('/dashboard');
     } else {
@@ -44,10 +40,4 @@ async function newEditHandler(click) {
     }
 }
 
-document.getElementById("create").addEventListener('click', function(){
-    if(!safety || !quality || !value || !speed || !accuracy || !safety) {
-        alert("Please select all ratings!")
-    } else {
-        newEditHandler('click');
-    }
-});
+document.getElementById("create").addEventListener('click', newEditHandler);
