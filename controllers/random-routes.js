@@ -1,16 +1,13 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Review, Comment } = require('../models');
-const {QueryTypes, Sequelize} = require('sequelize');
-let randomLength = 1;
-//let randomService = "DoorDash";
 
 
 //find length
-  router.get('/', (req, res) => {
+router.get('/', (req, res) => {
     Review.findAll({
-           limit: 1,
-           order: Sequelize.literal('rand()'),
+        limit: 1,
+        order: Sequelize.literal('rand()'),
         attributes: [
             'title',
             'text',
@@ -34,11 +31,11 @@ let randomLength = 1;
     })
         .then(dbReviewData => {
             const reviews = dbReviewData.map(review => review.get({ plain: true }));
-           console.log(reviews);
+            console.log(reviews);
             res.render("random", {
                 title: "Random",
                 reviews,
-              // review,
+                // review,
                 loggedIn: req.session.loggedIn
             })
         })

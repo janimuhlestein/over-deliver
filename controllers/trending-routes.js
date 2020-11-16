@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { User, Review } = require('../models')
+const { User, Review, Comment } = require('../models')
 
 //display trending page
 router.get('/', (req, res) => {
@@ -58,6 +58,12 @@ router.get('/view/:id', (req, res) => {
             'speed',
             'safety',
             'accuracy'
+        ],
+        include: [
+            {
+                model: Comment,
+                attributes: ['text']
+            }
         ]
     })
         .then(dbReviewData => {
