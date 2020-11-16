@@ -392,6 +392,7 @@ textarea {
   background-color: #345D23; 
   color: white; 
   padding: 10px 0px 10px 0px;
+  margin-left: 15px;
 }
 
 /* ENG POST STYLING */
@@ -548,11 +549,12 @@ footer {
     position: relative;
     min-height: 85vh;
   }
-  
+
+  #comment {
+    margin-left: 15px;
+    font-size: 22px;
+  }
   #content-wrap {
     padding-bottom: 2.5rem;
   }
-.left {
-  text-align: left
-}
   /* END EXTRA STYLES */
