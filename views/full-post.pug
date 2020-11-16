@@ -63,11 +63,11 @@ block layout-content
         p #{review.text}
         br
         br
-        h2.left Comments:
+        h2 Comments:
         if review.comments
             ul
             each n in review.comments
-                li.left #{n.text}
+                li #{n.text}
         //-     section.comments
         //-         each comments in reviews
         //-             include display-comment
