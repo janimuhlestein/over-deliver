@@ -7,7 +7,7 @@ const { User, Review, Comment } = require('../models');
 router.get('/', (req, res) => {
     Review.findAll({
         limit: 1,
-        order: Sequelize.literal('rand()'),
+        order: sequelize.literal('rand()'),
         attributes: [
             'title',
             'text',
