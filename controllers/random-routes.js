@@ -1,12 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Review, Comment } = require('../models');
-<<<<<<< HEAD
-=======
-const {QueryTypes, Sequelize} = require('sequelize');
->>>>>>> 7ccfde242ec7e2c7b00c2b6e66d1ab3d9deda309
-let randomLength = 1;
-//let randomService = "DoorDash";
 
 
 //find length
