@@ -21,21 +21,6 @@ body,
     flex-direction: column;
   }
   
-  .Banner {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    border-radius: 5px;
-    overflow: hidden;
-    background: white;
-    padding: 15px;
-    font-family: "Share Tech Mono", monospace;
-    border-bottom: var(--ui-shadow-border);
-    box-shadow: var(--ui-shadow);
-  }
-
 .container {
     padding: 20px 10px 20px 10px;
 }
@@ -292,7 +277,7 @@ h3 {
     background-color: #80A860;
 }
 
-.Create {
+.create {
     background-color: rgba(128, 168, 96, 0.7);
     padding: 30px 30px 15px 30px;
     border-bottom: var(--ui-shadow-border);
@@ -349,7 +334,7 @@ textarea {
 
 /* POST STYLING */
 
-.Title {
+.title {
     padding: 30px 30px 15px 30px;
     border: 5px solid #345D23;
     box-shadow: var(--ui-shadow);
@@ -551,5 +536,7 @@ footer {
   #content-wrap {
     padding-bottom: 2.5rem;
   }
-
+.left {
+  text-align: left
+}
   /* END EXTRA STYLES */
