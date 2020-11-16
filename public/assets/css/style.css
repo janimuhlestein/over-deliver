@@ -393,7 +393,7 @@ textarea {
     text-decoration: underline;
 }
 
-.comment { 
+.comment, .Title { 
   background-color: white; 
   color: #80A860; 
   border-radius: 10px; 
