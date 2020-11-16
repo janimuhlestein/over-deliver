@@ -1,7 +1,7 @@
 extends layout
 
 block layout-content
-    .Create
+    .create
         h2 Service: #{review.service}
         h2 Title: #{review.title}
         h2 Safety:
@@ -61,6 +61,17 @@ block layout-content
             p.stars ★
         h2 Content:
         p #{review.text}
+        br
+        br
+        h2.left Comments:
+        if review.comments
+            ul
+            each n in review.comments
+                li.left #{n.text}
+        //-     section.comments
+        //-         each comments in reviews
+        //-             include display-comment
+
 
     if loggedIn
         include comment

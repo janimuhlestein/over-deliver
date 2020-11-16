@@ -1,38 +1,16 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const {User, Review} = require('../models');
+const { User, Review, Comment } = require('../models');
+const {QueryTypes, Sequelize} = require('sequelize');
 let randomLength = 1;
-let randomService = "DoorDash";
+//let randomService = "DoorDash";
+
 
 //find length
-router.get('/', (req,res)=>{
-    Review.findAndCountAll()
-        .then(dbCountData => {
-            randomLength = Math.floor(Math.random() * Math.floor(dbCountData.count) + 1);
-            console.log(randomLength)
-            return randomLength
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-
-    Review.findByPk(randomLength)
-        .then(dbServiceData => {
-            randomService = dbServiceData.service
-            console.log(randomService)
-            return randomService
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });   
-    
+  router.get('/', (req, res) => {
     Review.findAll({
-        limit: 20 ,
-        where: {
-            service: randomService
-        },
+           limit: 1,
+           order: Sequelize.literal('rand()'),
         attributes: [
             'title',
             'text',
@@ -56,17 +34,55 @@ router.get('/', (req,res)=>{
     })
         .then(dbReviewData => {
             const reviews = dbReviewData.map(review => review.get({ plain: true }));
-            console.log(randomService)
+           console.log(reviews);
             res.render("random", {
                 title: "Random",
                 reviews,
+              // review,
                 loggedIn: req.session.loggedIn
             })
         })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
-        });  
+        });
+});
+
+router.get('/view/:id', (req, res) => {
+    Review.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'service',
+            'title',
+            'text',
+            'average',
+            'quality',
+            'value',
+            'speed',
+            'safety',
+            'accuracy'
+        ],
+        include: {
+            model: Comment,
+            attributes: ['text']
+        }
+    })
+        .then(dbReviewData => {
+            if (!dbReviewData) {
+                res.status(404).json({ message: 'No review found with this id' });
+                return;
+            }
+            const review = dbReviewData.get({ plain: true });
+            console.log(review);
+            res.render('full-post', { review, loggedIn: true });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 module.exports = router;

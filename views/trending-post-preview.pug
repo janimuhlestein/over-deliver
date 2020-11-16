@@ -1,7 +1,7 @@
 - var average = review.average
 
-div.Post
-  div.Title
+div.post
+  div.title
     h2 Service: #{review.service}
     h2 Title: #{review.title}
     h2 Average Rating:
@@ -17,7 +17,6 @@ div.Post
       p.stars ★
     h2(id="postReviewHeading") Review
     p(id="postReviewText") #{review.text}
-    button(class="btn" id="postCommentButton") Comment
     button.vote-post-button(type="submit" class="btn" id="postVoteButton" onClick='voteFormHandler(' + review.id + ')') Vote
     a(href='trending/view/' + review.id)
       button.btn View full post
