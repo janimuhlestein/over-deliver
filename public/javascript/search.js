@@ -337,7 +337,7 @@ async function providerSearchHandler(event, service) {
         
      } else {
          console.log(response.statusText);
-         alert(response.statusText);
+         alert('No provider found with that name.');
      };
 };
 
