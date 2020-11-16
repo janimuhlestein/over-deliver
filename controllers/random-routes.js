@@ -1,38 +1,19 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Review, Comment } = require('../models');
+<<<<<<< HEAD
+=======
+const {QueryTypes, Sequelize} = require('sequelize');
+>>>>>>> 7ccfde242ec7e2c7b00c2b6e66d1ab3d9deda309
 let randomLength = 1;
-let randomService = "DoorDash";
+//let randomService = "DoorDash";
+
 
 //find length
-router.get('/', (req, res) => {
-    Review.findAndCountAll()
-        .then(dbCountData => {
-            randomLength = Math.floor(Math.random() * Math.floor(dbCountData.count) + 1);
-            console.log(randomLength)
-            return randomLength
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-
-    Review.findByPk(randomLength)
-        .then(dbServiceData => {
-            randomService = dbServiceData.service
-            console.log(randomService)
-            return randomService
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-
+  router.get('/', (req, res) => {
     Review.findAll({
-        limit: 20,
-        where: {
-            service: randomService
-        },
+           limit: 1,
+           order: Sequelize.literal('rand()'),
         attributes: [
             'title',
             'text',
@@ -56,10 +37,11 @@ router.get('/', (req, res) => {
     })
         .then(dbReviewData => {
             const reviews = dbReviewData.map(review => review.get({ plain: true }));
-            console.log(randomService)
+           console.log(reviews);
             res.render("random", {
                 title: "Random",
                 reviews,
+              // review,
                 loggedIn: req.session.loggedIn
             })
         })
