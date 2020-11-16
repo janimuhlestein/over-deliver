@@ -85,7 +85,11 @@ router.get('/view/:id', (req, res) => {
             'speed',
             'safety',
             'accuracy'
-        ]
+        ],
+        include: {
+            model: Comment,
+            attributes: ['text']
+        }
     })
         .then(dbReviewData => {
             if (!dbReviewData) {
